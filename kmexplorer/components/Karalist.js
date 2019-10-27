@@ -2,8 +2,23 @@ import React from 'react'
 import { i18n, withTranslation } from '../i18n'
 
 import Karaitem from './Karaitem';
+import Modal from '../components/Modal';
 
 class Karalist extends React.Component {
+	constructor (props) {
+		super(props)
+		this.state = {
+			modal:false,
+		}
+	}
+	
+	displayModal = () => {
+		this.setState({modal:true})
+	}
+	hideModal = () => {
+		this.setState({modal:false})
+	}
+
 	render() {
 		if(this.props.updating)
 		{
@@ -25,10 +40,15 @@ class Karalist extends React.Component {
 		}
 		else
 		{
-			return (
+			return (<>
+				{this.state.modal ? <Modal onClose={() => this.hideModal()} />:null}
 				<div className="kmx-karas-list">
 					<p className="error">{i18n.t('karalist.no_data')}</p>
 				</div>
+				<div className="kara-suggestion" onClick={this.displayModal}>
+        			{i18n.t("karalist.kara_suggestion")}
+      			</div>
+				</>
 			)
 		}
 	}

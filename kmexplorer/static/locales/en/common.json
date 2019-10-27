@@ -68,7 +68,12 @@
   },
   "karalist": {
     "no_data": "No result",
-    "update_in_progress": "Update in progress"
+    "update_in_progress": "Update in progress",
+    "kara_suggestion": "Can't find your favorite song? Click here"
+  },
+  "modal": {
+    "kara_suggestion_name": "Name of the song",
+    "username": "Your username"
   },
   "sitename": "Karaoke Mugen",
   "stats": {

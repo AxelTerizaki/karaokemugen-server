@@ -46,7 +46,6 @@ body {
   margin-top: auto;
 }
 
-.kmx-help-menu,
 .kmx-language-menu,
 .kmx-filters-menu {
   dl.kmx-filters-menu--list {
@@ -98,7 +97,6 @@ body {
   }
 }
 
-.kmx-help-menu,
 .kmx-language-menu {
   dl {
     display: flex;
@@ -351,9 +349,27 @@ body {
   flex-direction: row;
   flex-wrap:wrap;
   margin: 0 -.5em;
+
+  .error {
+    margin-left: 10px;
+  }
 }
 
-@import "help-panel.scss";
+.kara-suggestion {
+  cursor: pointer;
+  font-size: 1.25em;
+  text-decoration: none;
+  padding: .5em;
+  color: #26aacc;
+  border-radius: .4em;
+  background: $kara_item_files_bg;
+  &:hover {
+    background: $kara_item_files_over_bg;
+    color: $kara_item_files_over_color;
+  }
+}
+
+@import "modal.scss";
 
 @import "karaitem.scss";
 @import "karadetail.scss";
