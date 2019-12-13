@@ -7,11 +7,9 @@ import {
 	replaceFavorites,
 	upsertPlayed,
 	upsertRequests,
-	getFavoritesStats as dbGetFavoritesStats,
-	getRequestedStats as dbGetRequestedStats,
-	getPlayedStats as dbGetPlayedStats,
 	wipeInstance} from '../dao/stats';
 import logger from '../lib/utils/logger';
+import { getAllKaras } from './kara';
 
 const payloadConstraints = {
 	'instance.instance_id': {presence: true, format: uuidRegexp},
@@ -48,14 +46,14 @@ export async function processStatsPayload(payload: any) {
 	}
 }
 
-export async function getFavoritesStats() {
-	return await dbGetFavoritesStats();
+export async function getFavoritesStats(filter: string, lang: string, from = 0, size = 0) {
+	return await getAllKaras(filter, lang, from, size, 'favorited');
 }
 
-export async function getRequestedStats() {
-	return await dbGetRequestedStats();
+export async function getRequestedStats(filter: string, lang: string, from = 0, size = 0) {
+	return await getAllKaras(filter, lang, from, size, 'requested');
 }
 
-export async function getPlayedStats() {
-	return await dbGetPlayedStats();
+export async function getPlayedStats(filter: string, lang: string, from = 0, size = 0) {
+	return await getAllKaras(filter, lang, from, size, 'played');
 }

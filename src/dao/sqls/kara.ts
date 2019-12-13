@@ -2,7 +2,7 @@ import { LangClause } from "../../lib/types/database";
 
 // SQL for kara management
 
-export const getAllKaras = (filterClauses: string[], lang: LangClause, typeClauses: string, orderClauses: string, havingClause: string, limitClause: string, offsetClause: string) => `SELECT
+export const getAllKaras = (filterClauses: string[], lang: LangClause, typeClauses: string, orderClauses: string, havingClause: string, limitClause: string, offsetClause: string, statsSelectClause: string, statsJoinClause: string) => `SELECT
   ak.kid AS kid,
   ak.title AS title,
   ak.songorder AS songorder,
@@ -39,8 +39,10 @@ export const getAllKaras = (filterClauses: string[], lang: LangClause, typeClaus
   ak.repo AS repo,
   ak.tag_names AS tag_names,
   ak.tagfiles AS tagfiles,
+  ${statsSelectClause}
   count(ak.kid) OVER()::integer AS count
 FROM all_karas AS ak
+${statsJoinClause}
 LEFT OUTER JOIN kara_serie AS ks_main ON ks_main.fk_kid = ak.kid
 LEFT OUTER JOIN serie_lang AS sl_main ON sl_main.fk_sid = ks_main.fk_sid AND sl_main.lang = ${lang.main}
 LEFT OUTER JOIN kara_serie AS ks_fall ON ks_fall.fk_sid = ak.kid

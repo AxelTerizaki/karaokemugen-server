@@ -1,5 +1,6 @@
 import {getRequestedStats, getFavoritesStats, getPlayedStats, processStatsPayload} from '../services/stats';
 import { Router } from 'express';
+import { getLang } from './middlewares/lang';
 
 export default function statsController(router: Router) {
 	router.post('/stats', async (req, res) => {
@@ -19,23 +20,23 @@ export default function statsController(router: Router) {
 		}
 	});
 	*/
-	router.get('/stats/played', async (_, res) => {
+	router.get('/stats/played', getLang, async (req: any, res) => {
 		try {
-			res.status(200).json(await getPlayedStats());
+			res.status(200).json(await getPlayedStats(req.query.filter, req.lang, req.query.from, req.query.size));
 		} catch(err) {
 			res.status(500).json(`Error while retrieving played stats : ${err}`);
 		}
 	});
-	router.get('/stats/favorites', async (_, res) => {
+	router.get('/stats/favorites', getLang, async (req: any, res) => {
 		try {
-			res.status(200).json(await getFavoritesStats());
+			res.status(200).json(await getFavoritesStats(req.query.filter, req.lang, req.query.from, req.query.size));
 		} catch(err) {
 			res.status(500).json(`Error while retrieving favorites : ${err}`);
 		}
 	});
-	router.get('/stats/requested', async (_, res) => {
+	router.get('/stats/requested', getLang, async (req: any, res) => {
 		try {
-			res.status(200).json(await getRequestedStats());
+			res.status(200).json(await getRequestedStats(req.query.filter, req.lang, req.query.from, req.query.size));
 		} catch(err) {
 			res.status(500).json(`Error while retrieving requested stats : ${err}`);
 		}

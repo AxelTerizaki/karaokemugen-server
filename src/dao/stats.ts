@@ -1,5 +1,4 @@
-import {langSelector, db, transaction, buildClauses} from '../lib/dao/database';
-import {pg as yesql} from 'yesql';
+import {db, transaction} from '../lib/dao/database';
 import { Session, Favorite, Played, Requested, Instance } from '../types/stats';
 const sql = require('./sqls/stats');
 
@@ -61,35 +60,3 @@ export async function upsertRequests(requests: Requested[]) {
 	if (requests.length > 0) await transaction([{sql: sql.insertRequested, params: params}]);
 }
 
-export async function getPlayedStats(filter?: string, lang?: string, from = 0, size = 0) {
-	const filterClauses = filter ? buildClauses(filter) : {sql: [], params: {}};
-	let limitClause = '';
-	let offsetClause = '';
-	if (from > 0) offsetClause = `OFFSET ${from} `;
-	if (size > 0) limitClause = `LIMIT ${size} `;
-	const query = sql.getPlayedStats(filterClauses.sql, langSelector(lang), limitClause, offsetClause);
-	const res = await db().query(yesql(query)(filterClauses.params));
-	return res.rows;
-}
-
-export async function getFavoritesStats(filter?: string, lang?: string, from = 0, size = 0) {
-	const filterClauses = filter ? buildClauses(filter) : {sql: [], params: {}};
-	let limitClause = '';
-	let offsetClause = '';
-	if (from > 0) offsetClause = `OFFSET ${from} `;
-	if (size > 0) limitClause = `LIMIT ${size} `;
-	const query = sql.getFavoritesStats(filterClauses.sql, langSelector(lang), limitClause, offsetClause);
-	const res = await db().query(yesql(query)(filterClauses.params));
-	return res.rows;
-}
-
-export async function getRequestedStats(filter?: string, lang?: string, from = 0, size = 0) {
-	const filterClauses = filter ? buildClauses(filter) : {sql: [], params: {}};
-	let limitClause = '';
-	let offsetClause = '';
-	if (from > 0) offsetClause = `OFFSET ${from} `;
-	if (size > 0) limitClause = `LIMIT ${size} `;
-	const query = sql.getRequestedStats(filterClauses.sql, langSelector(lang), limitClause, offsetClause);
-	const res = await db().query(yesql(query)(filterClauses.params));
-	return res.rows;
-}
