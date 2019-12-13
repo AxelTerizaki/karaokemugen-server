@@ -34,7 +34,7 @@ class Homepage extends React.Component {
 	if (orderByArray.includes(orderBy)) {
 		karas = await axios.get(API_URL+'/api/stats/'+orderBy+'?'+querystring.stringify(filterTools.getApiQuery(pageSize)));
 	} else {
-		karas = await axios.post(API_URL+'/api/karas/'+orderBy, filterTools.getApiQuery(pageSize));
+		karas = await axios.get(API_URL+'/api/karas/'+orderBy, filterTools.getApiQuery(pageSize));
 	}
     let karaStatus = null;
     let karaPage = 0;
