@@ -2,7 +2,7 @@
 // This is used for CI/CD to drop the database contents and start anew.
 // DO NOT DO THIS AT HOME.
 
-const dbConfigFile = require('../database.json');
+const dbConfigFile = require('../app/database.json');
 const {Pool} = require('pg');
 
 const dbConfig = {
