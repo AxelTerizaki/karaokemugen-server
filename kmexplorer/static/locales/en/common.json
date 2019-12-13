@@ -40,7 +40,10 @@
     "karas_keywords_placeholder": "title, singer, serie, ...",
     "order_by": "Order by",
     "tags_keywords_placeholder": "Filter by keywords",
-    "updated": "Updated"
+	"updated": "Updated",
+	"played": "Played",
+	"favorites": "Favorites",
+	"requested": "Requested"
   },
   "kara": {
     "creation_date": "Creation date",
