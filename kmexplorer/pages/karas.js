@@ -212,9 +212,9 @@ class Homepage extends React.Component {
 				<label>{i18n.t('form.order_by')} :</label>
 				{this.buildFilterOrder('search', "A-Z")}
 				{this.buildFilterOrder('recent',i18n.t('form.updated'))}
+				{this.buildFilterOrder('requested',i18n.t('form.requested'))}
 				{this.buildFilterOrder('played',i18n.t('form.played'))}
 				{this.buildFilterOrder('favorites',i18n.t('form.favorites'))}
-				{this.buildFilterOrder('requested',i18n.t('form.requested'))}
 			</div>
 		</div>
 
