@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n, Router, withTranslation } from '../i18n'
+import { i18n, withTranslation } from '../i18n'
 import Link from '../utils/I18nLink';
 import i18nRouterPush from '../utils/i18nRouterPush'
 import Head from 'next/head'
@@ -11,7 +11,6 @@ import {tagsMap, tagTypeFromId} from '../components/tagsMap.js';
 import querystring from 'querystring';
 import FilterTools from '../utils/filterTools';
 import RuntimeConfig from '../utils/RuntimeConfig';
-const BASE_URL = RuntimeConfig.BASE_URL;
 const API_URL = RuntimeConfig.API_URL;
 const filterTools = new FilterTools();
 
@@ -97,7 +96,7 @@ class Homepage extends React.Component {
     this.setState({
       loading:true,
     })
-    let q = filterTools.reset().getQuery()
+    let q = filterTools.reset().setPage().getQuery()
     i18nRouterPush(q.path, q.query)
   }
 

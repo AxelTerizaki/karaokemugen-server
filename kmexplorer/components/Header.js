@@ -1,12 +1,9 @@
 import React from 'react'
 import { i18n, withTranslation } from '../i18n'
-import querystring from 'querystring';
 import FilterTools from '../utils/filterTools';
-import RuntimeConfig from '../utils/RuntimeConfig';
 import icons from '../components/Icons';
 import Link from '../utils/I18nLink';
 
-const BASE_URL = RuntimeConfig.BASE_URL;
 const filterTools = new FilterTools();
 
 class Header extends React.Component {

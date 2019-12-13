@@ -2,6 +2,8 @@ import React from 'react'
 import { i18n, withTranslation } from '../i18n'
 import icons from '../components/Icons';
 import axios from 'axios'
+import RuntimeConfig from '../utils/RuntimeConfig';
+const API_URL = RuntimeConfig.API_URL;
 
 class Modal extends React.Component {
 	constructor (props) {

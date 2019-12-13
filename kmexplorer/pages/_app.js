@@ -8,10 +8,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import tagsMap from '../components/tagsMap.js';
 import localForage from "localforage";
-import querystring from 'querystring';
 import FilterTools from '../utils/filterTools';
 import RuntimeConfig from '../utils/RuntimeConfig';
-const BASE_URL = RuntimeConfig.BASE_URL;
 const API_URL = RuntimeConfig.API_URL;
 const filterTools = new FilterTools();
 

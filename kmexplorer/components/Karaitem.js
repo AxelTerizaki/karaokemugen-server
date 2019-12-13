@@ -2,11 +2,7 @@ import React from 'react'
 import { i18n, withTranslation } from '../i18n'
 import Link from '../utils/I18nLink';
 import isoLanguages from '../components/isoLanguages';
-import querystring from 'querystring';
-import RuntimeConfig from '../utils/RuntimeConfig';
 import icons from '../components/Icons';
-const BASE_URL = RuntimeConfig.BASE_URL;
-const API_URL = RuntimeConfig.API_URL;
 
 class Karaitem extends React.Component {
 
