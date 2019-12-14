@@ -136,4 +136,14 @@ export default function KSController(router: Router) {
 				res.status(500).json(err);
 			}
 		});
+
+	router.route('/settings')
+		.get(async (_, res) => {
+			return res.json({config: {
+				Gitlab: {
+						Enabled: getConfig().Gitlab.Enabled
+					}
+				}
+			});
+		});
 }

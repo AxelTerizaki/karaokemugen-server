@@ -20,8 +20,7 @@ class Modal extends React.Component {
 		if (this.state.karaTitle) {
 			var response = await axios.post(API_URL+'/api/karas/suggest', 
 				{ karaName: this.state.karaTitle, username: this.state.username, series : this.state.series, link: this.state.link})
-			if(response.status===200 && response.data.issueURL !==null)
-			{
+			if(response.status===200 && response.data.issueURL !==null) {
 				this.props.onClose();
 			}
 		}
