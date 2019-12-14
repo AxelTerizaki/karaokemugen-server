@@ -30,6 +30,9 @@ class Modal extends React.Component {
 		return (
 			<div className="kmx-modal-wrapper">
 				<div className="kmx-modal-panel">
+					<div className="kmx-modal-header">
+						<h4>{i18n.t("modal.title")}</h4>
+					</div>
 					<div className="kmx-modal-content">
 						<div>
 							<label>{i18n.t("modal.kara_suggestion_name")}</label>

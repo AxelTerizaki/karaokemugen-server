@@ -72,6 +72,7 @@
     "kara_suggestion": "Vous ne trouvez pas votre bonheur ? Cliquez ici"
   },
   "modal": {
+	"title": "Suggestion d'une chanson",
     "kara_suggestion_name": "Titre de la chanson",
     "username": "Votre pseudo"
   },

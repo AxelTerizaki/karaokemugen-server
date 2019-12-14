@@ -72,6 +72,7 @@
     "kara_suggestion": "Can't find your favorite song? Click here"
   },
   "modal": {
+	"title": "Suggestion of a song",
     "kara_suggestion_name": "Name of the song",
     "username": "Your username"
   },
