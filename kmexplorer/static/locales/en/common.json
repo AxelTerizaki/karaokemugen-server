@@ -73,7 +73,9 @@
   },
   "modal": {
 	"title": "Suggestion of a song",
-    "kara_suggestion_name": "Name of the song",
+	"name": "Name of the song",
+	"series": "Series",
+	"link": "Link",
     "username": "Your username"
   },
   "sitename": "Karaoke Mugen",

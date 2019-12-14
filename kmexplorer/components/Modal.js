@@ -10,19 +10,20 @@ class Modal extends React.Component {
 		super(props)
 		this.state = {
 			karaTitle : "",
-			username : ""
+			username : "",
+			series: "",
+			link: ""
 		}
 	}
 
 	confirm = async () => {
-		if (this.state.karaTitle && this.state.username) {
-			var response = await axios.post(API_URL+'/api/karas/suggest', { karaName: this.state.karaTitle, username: this.state.username })
+		if (this.state.karaTitle) {
+			var response = await axios.post(API_URL+'/api/karas/suggest', 
+				{ karaName: this.state.karaTitle, username: this.state.username, series : this.state.series, link: this.state.link})
 			if(response.status===200 && response.data.issueURL !==null)
 			{
 				this.props.onClose();
 			}
-		} else {
-			this.props.onClose();
 		}
 	}
 
@@ -35,19 +36,27 @@ class Modal extends React.Component {
 					</div>
 					<div className="kmx-modal-content">
 						<div>
-							<label>{i18n.t("modal.kara_suggestion_name")}</label>
+							<label>{i18n.t("modal.name")}</label>
 							<input required={true} onChange={(e) => this.setState({karaTitle: e.target.value})}/>
 						</div>
 						<div>
 							<label>{i18n.t("modal.username")}</label>
-							<input required={true} onChange={(e) => this.setState({username: e.target.value})}/>
+							<input onChange={(e) => this.setState({username: e.target.value})}/>
+						</div>
+						<div>
+							<label>{i18n.t("modal.series")}</label>
+							<input onChange={(e) => this.setState({series: e.target.value})}/>
+						</div>
+						<div>
+							<label>{i18n.t("modal.link")}</label>
+							<input onChange={(e) => this.setState({link: e.target.value})}/>
 						</div>
 					</div>
 					<div className="kmx-modal-footer">
 						<button className="kmx-modal-abort" type="button" onClick={this.props.onClose}>
 							{icons.abort}
 						</button>
-						<button className="kmx-modal-confirm" type="button" onClick={this.confirm}>
+						<button className="kmx-modal-confirm" type="submit" onClick={this.confirm}>
 							{icons.confirm}
 						</button>
 					</div>
