@@ -58,6 +58,9 @@ export const defaults = {
 			Import: {
 				Labels: []
 			},
+			Suggestion: {
+				Labels: []
+			},
 			Edit: {
 				Labels: []
 			},

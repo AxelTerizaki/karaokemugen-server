@@ -42,7 +42,7 @@ Gitlab:
         Nouveau sub ? : $newSub\n
     Suggestion:
       Labels:
-        - à intégrer
+        - suggestion
     Import:
       Title: '[Inbox] $kara'
       Description: >

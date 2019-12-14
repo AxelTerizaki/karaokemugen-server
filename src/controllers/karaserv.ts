@@ -124,13 +124,13 @@ export default function KSController(router: Router) {
 			}
 		});
 	router.route('/karas/suggest')
-		.get(async (req, res) => {
+		.post(async (req, res) => {
 			try {
 				if (getConfig().Gitlab.Enabled) {
 					const url = await postSuggestionToKaraBase(req.body.karaName, req.body.username);
 					res.json({issueURL: url});
 				} else {
-					res.status(403).json(null);
+					res.status(403).json('Gitlab is not enabled');
 				}
 			} catch(err) {
 				res.status(500).json(err);
