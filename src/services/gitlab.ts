@@ -15,6 +15,6 @@ export async function postSuggestionToKaraBase(karaName: string, username: strin
 	try {
 		return await gitlabPostNewIssue(title, desc, conf.Suggestion.Labels);
 	} catch(err) {
-		logger.error(`[Gitlab] Call to Gitlab API failed : ${err}`);
+		logger.error(`[KaraSuggestion] Call to Gitlab API failed : ${err}`);
 	}
 }
