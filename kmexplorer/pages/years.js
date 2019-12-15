@@ -1,12 +1,7 @@
 import React from 'react'
 import { i18n, withTranslation } from '../i18n'
-import i18nRouterPush from '../utils/i18nRouterPush'
 import Head from 'next/head'
-import axios from 'axios'
-import Pagination from '../components/Pagination';
 import DedicatedTagtList from '../components/DedicatedTagList';
-import tagsMap from '../components/tagsMap.js';
-import querystring from 'querystring';
 import FilterTools from '../utils/filterTools';
 const filterTools = new FilterTools();
 

@@ -71,7 +71,15 @@
   },
   "karalist": {
     "no_data": "Aucun résultat",
-    "update_in_progress": "Mise à jour en cours"
+    "update_in_progress": "Mise à jour en cours",
+    "kara_suggestion": "Vous ne trouvez pas votre bonheur ? Cliquez ici"
+  },
+  "modal": {
+	"title": "Suggestion d'une chanson",
+	"name": "Titre de la chanson",
+	"series": "Série",
+	"link": "Lien",
+    "username": "Votre pseudo"
   },
   "sitename": "Karaoke Mugen",
   "stats": {

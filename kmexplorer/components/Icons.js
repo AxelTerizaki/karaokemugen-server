@@ -1,4 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
 	faTasks,
@@ -20,7 +19,9 @@ import {
 	faPhotoVideo,
 	faProjectDiagram,
 	faChess,
-	faLaptop
+	faLaptop,
+	faTimes,
+	faCheck
 	} from '@fortawesome/free-solid-svg-icons'
 import { faCreativeCommonsSampling } from '@fortawesome/free-brands-svg-icons'
 
@@ -59,5 +60,7 @@ export default {
 	genre: <FontAwesomeIcon icon={faChess} />,
 	genres: <FontAwesomeIcon icon={faChess} />,
 	platform: <FontAwesomeIcon icon={faLaptop} />,
-	platforms: <FontAwesomeIcon icon={faLaptop} />
+	platforms: <FontAwesomeIcon icon={faLaptop} />,
+	abort: <FontAwesomeIcon icon={faTimes} />,
+	confirm: <FontAwesomeIcon icon={faCheck} />
 }

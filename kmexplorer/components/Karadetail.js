@@ -8,7 +8,6 @@ import icons from '../components/Icons';
 import i18nRouterPush from '../utils/i18nRouterPush'
 import FilterTools from '../utils/filterTools';
 const filterTools = new FilterTools();
-const BASE_URL = RuntimeConfig.BASE_URL;
 const API_URL = RuntimeConfig.API_URL;
 
 class Karaitem extends React.Component {

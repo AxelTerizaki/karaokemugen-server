@@ -29,15 +29,15 @@ export const defaults = {
 			}
 		},
 		Path: {
-			Karas: ['app/data/karaokes'],
-			Lyrics: ['app/data/lyrics'],
-			Medias: ['app/data/medias'],
-			Series: ['app/data/series'],
-			Tags: ['app/data/tags'],
-			Temp: 'app/temp',
-			Import: 'app/inbox',
-			Avatars: 'app/avatars',
-			Previews: 'app/previews',
+			Karas: ['data/karaokes'],
+			Lyrics: ['data/lyrics'],
+			Medias: ['data/medias'],
+			Series: ['data/series'],
+			Tags: ['data/tags'],
+			Temp: 'temp',
+			Import: 'inbox',
+			Avatars: 'avatars',
+			Previews: 'previews',
 		}
 	},
 	Shortener: {
@@ -56,6 +56,9 @@ export const defaults = {
 	Gitlab: {
 		IssueTemplate: {
 			Import: {
+				Labels: []
+			},
+			Suggestion: {
 				Labels: []
 			},
 			Edit: {

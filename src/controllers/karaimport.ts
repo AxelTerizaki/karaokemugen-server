@@ -7,7 +7,7 @@ import { getState } from '../utils/state';
 
 export default function KIController(router: Router) {
 	const conf = getConfig();
-	let upload = multer({ dest: resolve(getState().appPath,conf.System.Path.Temp)});
+	let upload = multer({ dest: resolve(getState().dataPath,conf.System.Path.Temp)});
 
 	router.post('/karas', async (req, res) => {
 		try {

@@ -82,7 +82,7 @@ async function cleanupAvatars() {
 		if (!avatars.includes(user.avatar_file)) avatars.push(user.avatar_file);
 	}
 	const conf = getConfig();
-	const avatarPath = resolve(getState().appPath, conf.System.Path.Avatars);
+	const avatarPath = resolve(getState().dataPath, conf.System.Path.Avatars);
 	const avatarFiles = await asyncReadDir(avatarPath);
 	for (const file of avatarFiles) {
 		if (!avatars.includes(file) && file !== 'blank.png') asyncUnlink(resolve(avatarPath, file));

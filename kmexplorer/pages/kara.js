@@ -5,7 +5,6 @@ import axios from 'axios'
 import Karadetail from '../components/Karadetail';
 import FilterTools from '../utils/filterTools';
 import RuntimeConfig from '../utils/RuntimeConfig';
-const BASE_URL = RuntimeConfig.BASE_URL;
 const API_URL = RuntimeConfig.API_URL;
 const filterTools = new FilterTools();
 

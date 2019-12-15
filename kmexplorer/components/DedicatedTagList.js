@@ -1,9 +1,6 @@
 import React from 'react'
-import { i18n, withTranslation } from '../i18n'
+import { withTranslation } from '../i18n'
 import Link from '../utils/I18nLink';
-import RuntimeConfig from '../utils/RuntimeConfig';
-const BASE_URL = RuntimeConfig.BASE_URL;
-const API_URL = RuntimeConfig.API_URL;
 
 class DedicatedTagList extends React.Component {
 	render() {

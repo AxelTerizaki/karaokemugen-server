@@ -28,7 +28,7 @@ KaraExplorer:
 Gitlab:
   Enabled: true
   Token: xxx
-  Host: http://lab.shelter.moe
+  Host: https://lab.shelter.moe
   ProjectID: 1
   IssueTemplate:
     Edit:
@@ -42,7 +42,7 @@ Gitlab:
         Nouveau sub ? : $newSub\n
     Suggestion:
       Labels:
-        - à intégrer
+        - suggestion
     Import:
       Title: '[Inbox] $kara'
       Description: >

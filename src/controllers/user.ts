@@ -10,7 +10,7 @@ import {requireAuth, requireValidUser} from './middlewares/auth';
 export default function userController(router: Router) {
 	const conf = getConfig();
 	// Middleware for playlist and files import
-	let upload = multer({ dest: resolve(getState().appPath,conf.System.Path.Temp)});
+	let upload = multer({ dest: resolve(getState().dataPath,conf.System.Path.Temp)});
 
 	router.route('/users')
 		.get(async (_, res) => {

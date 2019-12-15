@@ -1,13 +1,9 @@
 import React from 'react'
 import { i18n, withTranslation } from '../i18n'
-import querystring from 'querystring';
 import FilterTools from '../utils/filterTools';
-import RuntimeConfig from '../utils/RuntimeConfig';
 import icons from '../components/Icons';
-import Help from '../components/Help';
 import Link from '../utils/I18nLink';
 
-const BASE_URL = RuntimeConfig.BASE_URL;
 const filterTools = new FilterTools();
 
 class Header extends React.Component {
@@ -15,18 +11,10 @@ class Header extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {
-			help:false,
 			dropdown:{
 				tags:false,
 			},
 		}
-	}
-
-	displayHelp(){
-		this.setState({help:true})
-	}
-	hideHelp(){
-		this.setState({help:false})
 	}
 
 	toggleDropdown(k){
@@ -48,7 +36,6 @@ class Header extends React.Component {
 		var karasURL = filterTools.reset().setPage(0).getQuery().url;
 		return (
 			<div>
-				{this.state.help ? <Help onClose={() => this.hideHelp()} />:null}
 				<header className="kmx-header">
 					<div className="kmx-filters-menu">
 						<dl className="kmx-filters-menu--list">
@@ -78,11 +65,6 @@ class Header extends React.Component {
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="languages"  ><Link href={ "/languages?"   }><a className={current_route=="/languages"   ? "active":"inactive"}>{icons.languages} {i18n.t('category.languages')}</a></Link></dd>
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="years"      ><Link href={ "/years?"       }><a className={current_route=="/years"       ? "active":"inactive"}>{icons.years} {i18n.t('category.years')}</a></Link></dd>
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="karaimport" ><a href={ "/import" }>{icons.kara_import} {i18n.t('category.kara_import')}</a></dd>
-						</dl>
-					</div>
-					<div className="kmx-help-menu">
-						<dl>
-							<dd hidden={true} key="help"><a onClick={() => this.displayHelp('en')}>Aide</a></dd>
 						</dl>
 					</div>
 					<div className="kmx-language-menu">
