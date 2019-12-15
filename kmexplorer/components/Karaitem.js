@@ -121,7 +121,28 @@ class Karaitem extends React.Component {
 					<h2 className="title"><Link href={'/kara/'+filterTools.normalizeString(kara.title)+'/'+kara.kid} key="detail"><a>{kara.title}</a></Link></h2>
 					<div className="tag-language">{languages}</div>
 				</div>
-				{caption}
+				
+				<div className="rightPanel">
+					{caption}
+					{kara.requested ? 
+						<React.Fragment>
+							<div className="countDisplayName">{i18n.t('form.requested')}</div>
+							<div className="countDisplay">{kara.requested} {i18n.t('form.times')}</div>
+						</React.Fragment> : null
+					}
+					{kara.played ? 
+						<React.Fragment>
+							<div className="countDisplayName">{i18n.t('form.played')}</div>
+							<div className="countDisplay">{kara.played} {i18n.t('form.times')}</div>
+						</React.Fragment> : null
+					}
+					{kara.favorited ?
+						<React.Fragment>
+							<div className="countDisplayName">{i18n.t('form.favorites')}</div>
+							<div className="countDisplay">{kara.favorited} {i18n.t('form.times')}</div>
+						</React.Fragment> : null
+					}
+				</div>
 				<div className="tags">
 					{songtypes}
 					{serie_name ? (<Link href={quickTagUrl('serie',serie_id,serie_name)} key="serie"><a data-type="serie" data-id={serie_id}><i className="fa fa-tv"></i> {serie_name}</a></Link>) : null}

@@ -41,9 +41,13 @@
     "order_by": "Tri",
     "tags_keywords_placeholder": "Filtrer par mots clés",
     "updated": "Mise à jour récente",
-	"played": "Plus joués",
-	"favorites": "Plus favoris",
-	"requested": "Plus demandés"
+	"most_played": "Plus joués",
+	"most_favorites": "Plus favoris",
+	"most_requested": "Plus demandés",
+	"played": "Joué",
+	"favorites": "Favoris",
+	"requested": "Demandé",
+	"times": "fois"
   },
   "kara": {
     "creation_date": "Date de création",

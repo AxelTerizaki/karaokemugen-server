@@ -41,9 +41,13 @@
     "order_by": "Order by",
     "tags_keywords_placeholder": "Filter by keywords",
 	"updated": "Recent",
-	"played": "Most played",
-	"favorites": "Most favorites",
-	"requested": "Most requested"
+	"most_played": "Most played",
+	"most_favorites": "Most favorites",
+	"most_requested": "Most requested",
+	"played": "Played",
+	"favorites": "Favorites",
+	"requested": "Requested",
+	"times": "times"
   },
   "kara": {
     "creation_date": "Creation date",

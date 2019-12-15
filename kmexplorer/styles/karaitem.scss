@@ -21,6 +21,21 @@
     justify-content: space-between;
   }
 
+  .rightPanel {
+	float: right;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+
+  .countDisplayName {
+	padding-top: 10px;
+  }
+
+  .countDisplay {
+	font-size: 1.4em;
+  }
+
   .caption {
     display: inline-block;
     margin: 0;
@@ -86,7 +101,8 @@
       text-decoration: none;
       padding: .5em;
       border-radius: .4em;
-      order:99;
+	  order:99;
+	  margin-left: 5px;
 
       &[data-type="language"] {
         background: $kara_item_tag_language_bg;
