@@ -1,5 +1,5 @@
 import React, { Suspense, Component } from 'react';
-import {Layout, Menu} from 'antd';
+import {Layout, Menu, Alert} from 'antd';
 import i18next from 'i18next';
 import './App.css';
 import KaraEdit from './pages/KaraEdit';
@@ -41,6 +41,7 @@ class MyApp extends Component {
 						<li><a href="https://lab.shelter.moe/karaokemugen/karaokebase/issues?label_name%5B%5D=en+cours">{i18next.t('IN_PROGRESS_LINK')}</a></li>
 					</ul>
 				</div>
+				<Alert message={i18next.t('LICENSE_REMINDER')} description={<a>{i18next.t('LICENSE_LINK')}</a>} type="info" showIcon></Alert>
 				{this.state.apiUrl ? <KaraEdit /> : null}
 			</div>
 		);

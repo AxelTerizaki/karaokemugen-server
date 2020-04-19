@@ -54,5 +54,8 @@
 		"GROUPS_TOOLTIP": "Groupes de téléchargement pour ce morceau. Le morceau sera ajouté dans ces paquets pour le téléchargement",
 		"CREATED_AT": "Date de création",
 		"MODIFIED_AT": "Date de dernière mise à jour"
-	}
+	},
+	"LICENSE_REMINDER": "Votre karaoké sera publié avec la licence CC-NC-BY-SA 4.0.",
+	"LICENSE_LINK": "Renseignez-vous sur cette licence en cliquant ici.",
+	"LICENSE_INFO": "Ce karaoké pourra donc être distribué à des fins non commerciales par n'importe qui tant qu'il respecte les conditions de cette licence."
 }
