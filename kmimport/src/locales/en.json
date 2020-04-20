@@ -54,5 +54,8 @@
 		"GROUPS_TOOLTIP": "Download groups for this song. The song will be included in these download packs",
 		"CREATED_AT": "Creation date",
 		"MODIFIED_AT": "Last updated date"
-	}
+	},
+	"LICENSE_REMINDER": "Your karaoke will be published with the CC-NC-BY-SA 4.0.",
+	"LICENSE_LINK": "Learn more about this license by clicking here.",
+	"LICENSE_INFO": "This karaoke may be distributed for non-commercial purposes, as soon as it complies with the license terms."
 }
