@@ -41,7 +41,11 @@ class MyApp extends Component {
 						<li><a href="https://lab.shelter.moe/karaokemugen/karaokebase/issues?label_name%5B%5D=en+cours">{i18next.t('IN_PROGRESS_LINK')}</a></li>
 					</ul>
 				</div>
-				<Alert message={i18next.t('LICENSE_REMINDER')} description={<a>{i18next.t('LICENSE_LINK')}</a>} type="info" showIcon></Alert>
+				<Alert message={i18next.t('LICENSE_REMINDER')} type="info" showIcon className='license-alert'
+					description={<React.Fragment>
+						<a href="https://lab.shelter.moe/karaokemugen/bases/karaokebase/-/blob/master/LICENSE.md">{i18next.t('LICENSE_LINK')}</a>
+						<p>{i18next.t('LICENSE_INFO')}</p>
+					</React.Fragment>}></Alert>
 				{this.state.apiUrl ? <KaraEdit /> : null}
 			</div>
 		);

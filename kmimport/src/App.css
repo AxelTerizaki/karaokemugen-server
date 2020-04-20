@@ -37,3 +37,9 @@
   margin: 1em;
   font-size: medium;
 }
+
+.license-alert {
+	margin-left: 2%;
+	margin-right: 2%;
+	max-width: 1000px;
+}
