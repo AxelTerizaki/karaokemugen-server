@@ -27,6 +27,7 @@
     "year": "Année",
     "years": "Années"
   },
+  "login": "Se connecter",
   "duration": {
     "days": "jours",
     "hours": "heures",
@@ -86,6 +87,11 @@
 	"type": "Type",
 	"link": "Lien",
 	"username": "Votre pseudo"
+  },
+  "login_form": {
+    "title": "Se connecter",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe"
   },
   "sitename": "Karaoke Mugen",
   "stats": {

@@ -24,7 +24,8 @@ import {
 	faCheck,
 	faFileCode,
 	faFileVideo,
-	faFileAlt
+	faFileAlt,
+	faUser
 	} from '@fortawesome/free-solid-svg-icons'
 import { faCreativeCommonsSampling } from '@fortawesome/free-brands-svg-icons'
 
@@ -68,5 +69,6 @@ export default {
 	confirm: <FontAwesomeIcon icon={faCheck} />,
 	karaFile: <FontAwesomeIcon icon={faFileCode} />,
 	mediaFile: <FontAwesomeIcon icon={faFileVideo} />,
-	lyricsFile: <FontAwesomeIcon icon={faFileAlt} />
+	lyricsFile: <FontAwesomeIcon icon={faFileAlt} />,
+	user: <FontAwesomeIcon icon={faUser} />
 }

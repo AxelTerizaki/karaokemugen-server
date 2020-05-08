@@ -59,6 +59,7 @@ body {
       padding: 0;
       margin: 0 .5em .5em 0;
       button, a {
+        cursor: pointer;
         border: none;
         display: block;
         padding: 0.5em 1em;
@@ -110,6 +111,39 @@ body {
       padding: 0;
       margin: 0 .5em .5em 0;
       button, a {
+        cursor: pointer;
+        border: none;
+        display: block;
+        padding: 0.5em 1em;
+        margin: 0;
+        background:$filter_btn_bg;
+        color:$filter_btn_color;
+        text-decoration: none;
+        border-radius:0.25em;
+        text-align:center;
+        &.active,
+        &:hover {
+          background: $filter_btn_over_bg;
+          color:$filter_btn_over_color;
+        }
+      }
+    }
+  }
+}
+.kmx-login-menu {
+  dl {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    @media (max-width:1200px) {
+      flex-direction: column;
+    }
+    dd {
+      position: relative;
+      padding: 0;
+      margin: 0 .5em .5em 0;
+      button, a {
+        cursor: pointer;
         border: none;
         display: block;
         padding: 0.5em 1em;

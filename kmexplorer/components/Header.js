@@ -3,6 +3,7 @@ import { i18n, withTranslation } from '../i18n'
 import FilterTools from '../utils/filterTools';
 import icons from '../components/Icons';
 import Link from '../utils/I18nLink';
+import AuthForm from './AuthForm';
 
 const filterTools = new FilterTools();
 
@@ -13,6 +14,9 @@ class Header extends React.Component {
 		this.state = {
 			dropdown:{
 				tags:false,
+			},
+			modal:{
+				login:false,
 			},
 		}
 	}
@@ -26,6 +30,16 @@ class Header extends React.Component {
 		let dropdown = this.state.dropdown;
 		dropdown[k] = false;
 		this.setState({dropdown:dropdown})
+	}
+	openModal(k){
+		let modal = this.state.modal;
+		modal[k] = true;
+		this.setState({modal})
+	}
+	closeModal(k){
+		let modal = this.state.modal;
+		modal[k] = false;
+		this.setState({modal})
 	}
 
 	render() {
@@ -65,6 +79,14 @@ class Header extends React.Component {
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="languages"  ><Link href={ "/languages?"   }><a className={current_route=="/languages"   ? "active":"inactive"}>{icons.languages} {i18n.t('category.languages')}</a></Link></dd>
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="years"      ><Link href={ "/years?"       }><a className={current_route=="/years"       ? "active":"inactive"}>{icons.years} {i18n.t('category.years')}</a></Link></dd>
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="karaimport" ><a href={ "/import" }>{icons.kara_import} {i18n.t('category.kara_import')}</a></dd>
+						</dl>
+					</div>
+					<div className="kmx-login-menu">
+						<dl>
+							<dd key="login">
+								<button onClick={this.openModal.bind(this,'login')}>{icons.user} {i18n.t('login')}</button>
+								{this.state.modal.login ? <AuthForm onClose={() => {this.closeModal('login')}} />:null}
+							</dd>
 						</dl>
 					</div>
 					<div className="kmx-language-menu">
