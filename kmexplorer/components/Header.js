@@ -3,7 +3,7 @@ import { i18n, withTranslation } from '../i18n'
 import FilterTools from '../utils/filterTools';
 import icons from '../components/Icons';
 import Link from '../utils/I18nLink';
-import AuthForm from './AuthForm';
+import AuthButtons from '../components/AuthButtons';
 
 const filterTools = new FilterTools();
 
@@ -81,14 +81,7 @@ class Header extends React.Component {
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="karaimport" ><a href={ "/import" }>{icons.kara_import} {i18n.t('category.kara_import')}</a></dd>
 						</dl>
 					</div>
-					<div className="kmx-login-menu">
-						<dl>
-							<dd key="login">
-								<button onClick={this.openModal.bind(this,'login')}>{icons.user} {i18n.t('login')}</button>
-								{this.state.modal.login ? <AuthForm onClose={() => {this.closeModal('login')}} />:null}
-							</dd>
-						</dl>
-					</div>
+					<AuthButtons/>
 					<div className="kmx-language-menu">
 						<dl>
 							<dd key="lng-en"><a onClick={() => i18n.changeLanguage('en')} className={i18n.language=="en" ? "active":""}>EN</a></dd>

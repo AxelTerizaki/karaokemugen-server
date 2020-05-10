@@ -2,37 +2,41 @@ import EventEmmiter from 'events';
 import axios from 'axios';
 import { parseJwt } from './tools';
 
-let logInfos;
-
-if (!logInfos) {
-	const token = window.localStorage.getItem('kmToken');
-	if (token) {
-		logInfos = parseJwt(token);
-		logInfos.token = token;
-	} else {
-		logInfos = undefined;
-	}
-}
-
 class Store extends EventEmmiter {
-	getLogInfos() {
-		return logInfos;
+	constructor() {
+		super();
+		const logInfos = JSON.parse(window.localStorage.getItem('kmToken'));
+		if (logInfos) {
+			console.log(logInfos);
+			this.logInfos = parseJwt(logInfos.token);
+			this.logInfos.token = logInfos.token;
+			console.log(this.logInfos);
+		} else {
+			this.logInfos = undefined;
+		}
 	}
 
-	setLogInfo(token) {
-		logInfos = parseJwt(token);
-		window.localStorage.setItem('kmToken', token);
-		logInfos.token = token;
+	getLogInfos() {
+		return this.logInfos;
+	}
+
+	isLoggedIn() {
+		return !!this.logInfos?.username;
+	}
+
+	setLogInfo(logInfo) {
+		this.logInfos = parseJwt(logInfo.token);
+		this.logInfos.token = logInfos.token;
+		window.localStorage.setItem('kmToken', JSON.stringify(logInfo));
 		axios.defaults.headers.common['authorization'] = localStorage.getItem('kmToken');
-		store.emitChange('loginUpdated');
+		this.emit('loginUpdated');
 	}
 
 	logOut() {
 		window.localStorage.removeItem('kmToken');
-		logInfos = undefined;
+		this.logInfos = undefined;
 		axios.defaults.headers.common['authorization'] = null;
-		store.emitChange('loginOut');
+		this.emit('loginOut');
 	}
 }
-const store = new Store();
-export default store;
+export default Store;

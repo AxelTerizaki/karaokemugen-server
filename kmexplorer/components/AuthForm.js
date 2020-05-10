@@ -2,25 +2,30 @@ import React from 'react';
 import { i18n, withTranslation } from '../i18n';
 import icons from './Icons';
 import axios from 'axios';
-import store from '../utils/store';
+import Store from '../utils/store';
 
 class AuthForm extends React.Component {
 	constructor (props) {
 		super(props)
 		this.state = {};
+		this.store = null;
 	}
 
 	confirm = async () => {
-		if (this.state.title && this.state.songtype && this.state.serie && this.state.username) {
-			let response = await axios.post(API_URL+'/api/auth/login',
+		if (this.state.username && this.state.password) {
+			let response = await axios.post('/api/auth/login',
 				{ username: this.state.username, password: this.state.password });
-			if(response.status===200 && response.data !==null) {
-				store.setLogInfo(response.data);
+			if(response.status === 200 && response.data !== null) {
+				this.store.setLogInfo(response.data);
 				this.props.onClose();
 			} else {
 				// TODO: give user feedback ("incorrect crendentials" thing)
 			}
 		}
+	}
+
+	componentDidMount() {
+		this.store = new Store();
 	}
 
 	render() {
@@ -33,7 +38,8 @@ class AuthForm extends React.Component {
 					<div className="kmx-modal-content">
 						<div>
 							<label>{i18n.t("login_form.username")}</label>
-							<input required={true} onChange={(e) => this.setState({username: e.target.value})}/>
+							<input className="kmx-modal-half" required={true} onChange={(e) => this.setState({username: e.target.value})}/>
+							<span>@{location.host}</span>
 						</div>
 						<div>
 							<label>{i18n.t("login_form.password")}</label>
