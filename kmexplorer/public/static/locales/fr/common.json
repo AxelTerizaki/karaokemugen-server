@@ -28,6 +28,7 @@
     "years": "Années"
   },
   "login": "Se connecter",
+  "logout": "Se déconnecter",
   "duration": {
     "days": "jours",
     "hours": "heures",

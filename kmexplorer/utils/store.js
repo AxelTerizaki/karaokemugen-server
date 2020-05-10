@@ -26,7 +26,7 @@ class Store extends EventEmmiter {
 
 	setLogInfo(logInfo) {
 		this.logInfos = parseJwt(logInfo.token);
-		this.logInfos.token = logInfos.token;
+		this.logInfos.token = logInfo.token;
 		window.localStorage.setItem('kmToken', JSON.stringify(logInfo));
 		axios.defaults.headers.common['authorization'] = localStorage.getItem('kmToken');
 		this.emit('loginUpdated');
@@ -36,7 +36,7 @@ class Store extends EventEmmiter {
 		window.localStorage.removeItem('kmToken');
 		this.logInfos = undefined;
 		axios.defaults.headers.common['authorization'] = null;
-		this.emit('loginOut');
+		this.emit('loginUpdated');
 	}
 }
 export default Store;

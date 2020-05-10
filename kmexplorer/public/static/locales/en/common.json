@@ -28,6 +28,7 @@
     "years": "Years"
   },
   "login": "Login",
+  "logout": "Logout",
   "duration": {
     "days": "days",
     "hours": "hours",
