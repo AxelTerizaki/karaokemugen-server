@@ -3,6 +3,8 @@ import { i18n, withTranslation } from '../i18n';
 import icons from './Icons';
 import AuthForm from './AuthForm';
 import Store from '../utils/store';
+import EventSystem from '../utils/eventSystem';
+import Link from '../utils/I18nLink';
 
 class AuthButtons extends React.Component {
 	constructor (props) {
@@ -15,12 +17,16 @@ class AuthButtons extends React.Component {
 				login:false,
 			},
 			store: null,
-			loggedIn: false
+			loggedIn: false,
+			init: false
 		}
 	}
 
 	componentDidMount() {
 		let store = new Store();
+		EventSystem.subscribe('loginUpdated', () => {
+			this.refreshAuth();
+		});
 		this.setState({loggedIn: store.isLoggedIn(), store});
 	}
 
@@ -51,15 +57,14 @@ class AuthButtons extends React.Component {
 	}
 	logout() {
 		this.state.store.logOut();
-		this.refreshAuth();
 		this.closeDropdown('userActions');
 	}
 
 	render() {
 		return (
-			<div className="kmx-login-menu">
-				<dl>
-					<dd key="login">
+			<div className="kmx-filters-menu">
+				<dl className="kmx-filters-menu--list">
+					<dd key="login" className={this.props.current_route=="/account" ? "active":"inactive"}>
 						{
 							this.state.loggedIn ?
 							<button onClick={this.toggleDropdown.bind(this,'userActions')}>{icons.user} {this.state.store.getLogInfos().username}</button>:
@@ -69,7 +74,8 @@ class AuthButtons extends React.Component {
 						{
 							this.state.dropdown.userActions ?
 								<dl className="kmx-filters-menu--dropdown">
-									<dd onClick={() => this.logout()}><button>{icons.logout} {i18n.t('logout')}</button></dd>
+									<dd onClick={() => this.closeDropdown('userActions')}><Link href={ "/account" }><a>{icons.user} {i18n.t('my_account.title')}</a></Link></dd>
+									<dd onClick={() => this.logout()}><a>{icons.logout} {i18n.t('logout')}</a></dd>
 								</dl>
 								:null
 						}

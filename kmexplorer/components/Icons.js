@@ -26,7 +26,8 @@ import {
 	faFileVideo,
 	faFileAlt,
 	faUser,
-	faSignOutAlt
+	faSignOutAlt,
+	faTrash
 	} from '@fortawesome/free-solid-svg-icons'
 import { faCreativeCommonsSampling } from '@fortawesome/free-brands-svg-icons'
 
@@ -72,5 +73,6 @@ export default {
 	mediaFile: <FontAwesomeIcon icon={faFileVideo} />,
 	lyricsFile: <FontAwesomeIcon icon={faFileAlt} />,
 	user: <FontAwesomeIcon icon={faUser} />,
-	logout: <FontAwesomeIcon icon={faSignOutAlt} />
+	logout: <FontAwesomeIcon icon={faSignOutAlt} />,
+	delete: <FontAwesomeIcon icon={faTrash}/>
 }

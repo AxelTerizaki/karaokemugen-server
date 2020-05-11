@@ -7,7 +7,6 @@ import Store from '../utils/store';
 class AuthForm extends React.Component {
 	constructor (props) {
 		super(props)
-		this.state = {};
 		this.store = null;
 	}
 

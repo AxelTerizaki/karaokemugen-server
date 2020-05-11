@@ -1,16 +1,15 @@
-import EventEmmiter from 'events';
 import axios from 'axios';
 import { parseJwt } from './tools';
+import EventSystem from './eventSystem';
 
-class Store extends EventEmmiter {
+class Store {
 	constructor() {
-		super();
 		const logInfos = JSON.parse(window.localStorage.getItem('kmToken'));
 		if (logInfos) {
-			console.log(logInfos);
+			// console.log(logInfos);
 			this.logInfos = parseJwt(logInfos.token);
 			this.logInfos.token = logInfos.token;
-			console.log(this.logInfos);
+			// console.log(this.logInfos);
 		} else {
 			this.logInfos = undefined;
 		}
@@ -29,14 +28,14 @@ class Store extends EventEmmiter {
 		this.logInfos.token = logInfo.token;
 		window.localStorage.setItem('kmToken', JSON.stringify(logInfo));
 		axios.defaults.headers.common['authorization'] = localStorage.getItem('kmToken');
-		this.emit('loginUpdated');
+		EventSystem.publish('loginUpdated', this.logInfos);
 	}
 
 	logOut() {
 		window.localStorage.removeItem('kmToken');
 		this.logInfos = undefined;
 		axios.defaults.headers.common['authorization'] = null;
-		this.emit('loginUpdated');
+		EventSystem.publish('loginUpdated', this.logInfos);
 	}
 }
 export default Store;

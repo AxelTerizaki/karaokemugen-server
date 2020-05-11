@@ -81,7 +81,7 @@ class Header extends React.Component {
 							<dd onClick={this.closeDropdown.bind(this,'tags')} key="karaimport" ><a href={ "/import" }>{icons.kara_import} {i18n.t('category.kara_import')}</a></dd>
 						</dl>
 					</div>
-					<AuthButtons/>
+					<AuthButtons current_route={current_route}/>
 					<div className="kmx-language-menu">
 						<dl>
 							<dd key="lng-en"><a onClick={() => i18n.changeLanguage('en')} className={i18n.language=="en" ? "active":""}>EN</a></dd>

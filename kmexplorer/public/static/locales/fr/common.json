@@ -94,6 +94,9 @@
     "username": "Nom d'utilisateur",
     "password": "Mot de passe"
   },
+  "my_account": {
+    "title": "Mon compte"
+  },
   "sitename": "Karaoke Mugen",
   "stats": {
     "all_duration": "Durée de tous les karas",

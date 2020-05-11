@@ -49,7 +49,7 @@ body {
 .kmx-language-menu,
 .kmx-login-menu,
 .kmx-filters-menu {
-  dl.kmx-filters-menu--list {
+  dl.kmx-filters-menu--list, dl.kmx-login-menu--list {
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
@@ -78,7 +78,7 @@ body {
       }
     }
   }
-  dl.kmx-filters-menu--dropdown {
+  dl.kmx-filters-menu--dropdown, dl.kmx-login-menu--dropdown {
     z-index: 100;
     position: absolute;
     left: 0;
