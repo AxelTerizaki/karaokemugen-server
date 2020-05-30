@@ -4,10 +4,10 @@
   "private": true,
   "homepage": "/import",
   "dependencies": {
-    "antd": "^3.26.15",
+    "antd": "^4.2.5",
     "axios": "^0.19.2",
-    "i18next": "^19.4.4",
-    "i18next-browser-languagedetector": "^4.1.1",
+    "i18next": "^19.4.5",
+    "i18next-browser-languagedetector": "^4.2.0",
     "i18next-xhr-backend": "^3.2.2",
     "langs": "^2.0.0",
     "react": "^16.13.1",
@@ -15,9 +15,9 @@
     "react-scripts": "3.4.1"
   },
   "devDependencies": {
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.7",
-    "typescript": "^3.8.3"
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "start": "react-scripts start",

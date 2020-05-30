@@ -45,7 +45,7 @@ export async function editKara(kara: Kara): Promise<string> {
 		}
 
 		// Post issue to gitlab
-		const karaName = `${newKara.data.langs[0].name.toUpperCase()} - ${newKara.data.series[0]?.name || newKara.data.singers[0]?.name} - ${newKara.data.songtypes[0].name}${newKara.data.order || ''} - ${newKara.data.title}`;
+		const karaName = `${newKara.data.langs[0].name.toUpperCase()} - ${newKara.data.series[0]?.name || newKara.data.singers[0]?.name} - ${newKara.data.songtypes[0].name}${newKara.data.songorder || ''} - ${newKara.data.title}`;
 		const conf = getConfig();
 		let title = conf.Gitlab.IssueTemplate.Edit.Title || 'Edited kara: $kara';
 		logger.debug('[GitLab] Kara: '+JSON.stringify(newKara.data, null, 2));
@@ -59,7 +59,7 @@ export async function editKara(kara: Kara): Promise<string> {
 			.replace('$title', newKara.data.title)
 			.replace('$series', newKara.data.series.map(t => t.name).join(', '))
 			.replace('$type', newKara.data.songtypes.map(t => t.name).join(', '))
-			.replace('$order', newKara.data.order || '')
+			.replace('$order', (newKara.data.songorder && newKara.data.songorder.toString()) || '')
 			.replace('$lang', newKara.data.langs.map(t => t.name).join(', '))
 			.replace('$year', `${newKara.data.year}`)
 			.replace('$singer', newKara.data.singers.map(t => t.name).join(', '))
@@ -100,7 +100,7 @@ export async function createKara(kara: Kara) {
 		logger.error(`[KaraImport] Error importing kara : ${err}. Kara Data ${JSON.stringify(kara)}`);
 		throw err;
 	}
-	const karaName = `${newKara.data.langs[0].name.toUpperCase()} - ${newKara.data.series[0]?.name || newKara.data.singers[0]?.name} - ${newKara.data.songtypes[0].name}${newKara.data.order || ''} - ${newKara.data.title}`;
+	const karaName = `${newKara.data.langs[0].name.toUpperCase()} - ${newKara.data.series[0]?.name || newKara.data.singers[0]?.name} - ${newKara.data.songtypes[0].name}${newKara.data.songorder || ''} - ${newKara.data.title}`;
 	let title = conf.Gitlab.IssueTemplate.Import.Title || 'New kara: $kara';
 	logger.debug('[GitLab] Kara: '+JSON.stringify(newKara.data, null, 2));
 	title = title.replace('$kara', karaName);
@@ -111,7 +111,7 @@ export async function createKara(kara: Kara) {
 		.replace('$title', newKara.data.title)
 		.replace('$series', newKara.data.series.map(t => t.name).join(', '))
 		.replace('$type', newKara.data.songtypes.map(t => t.name).join(', '))
-		.replace('$order', newKara.data.order || '')
+		.replace('$order', (newKara.data.songorder && newKara.data.songorder.toString()) || '')
 		.replace('$lang', newKara.data.langs.map(t => t.name).join(', '))
 		.replace('$year', `${newKara.data.year}`)
 		.replace('$singer', newKara.data.singers.map(t => t.name).join(', '))

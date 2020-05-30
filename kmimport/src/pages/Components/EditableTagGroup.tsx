@@ -1,8 +1,9 @@
 import React from 'react';
-import {AutoComplete, Button, Checkbox, Col, Form, Icon, Input, Row, Tag, Tooltip} from 'antd';
-import axios from 'axios/index';
+import { AutoComplete, Button, Checkbox, Col, Row, Tag, Tooltip, Form, Input } from 'antd';
 import { getTagInLocale, getApiUrl } from "../../utils/kara";
 import i18next from 'i18next';
+import { PlusOutlined } from '@ant-design/icons';
+import Axios from 'axios';
 interface EditableTagGroupProps {
 	search: 'tag' | 'aliases',
 	onChange: any,
@@ -15,6 +16,7 @@ interface EditableTagGroupState {
 	DS: any,
 	value: any[],
 	inputVisible: boolean,
+	currentVal: any
 }
 
 let timer:any[] = [];
@@ -22,7 +24,6 @@ let timer:any[] = [];
 export default class EditableTagGroup extends React.Component<EditableTagGroupProps, EditableTagGroupState> {
 
 	input: any;
-	currentVal: any;
 
 	constructor(props) {
 		super(props);
@@ -32,7 +33,8 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 	state = {
 		value: this.props.value || [],
 		inputVisible: false,
-		DS: []
+		DS: [],
+		currentVal: undefined
 	};
 
 	showInput = () => {
@@ -85,7 +87,7 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 		if (filter === '') {
 			return ({data: []});
 		}
-		return axios.get(`${getApiUrl()}/api/karas/tags/${type}`, {
+		return Axios.get(`${getApiUrl()}/api/karas/tags/${type}`, {
 			params: {
 				type: type,
 				filter: filter
@@ -123,16 +125,6 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 		return array.sort((a,b) => {
 			return (a[val] > b[val]) ? 1 : (a[val] < b[val]) ? -1 : 0;
 		});
-	}
-
-	onKeyEnter = (e) => {
-		if (e.keyCode === 13)
-			this.handleInputConfirm(this.currentVal)
-	}
-
-	onKeyEnterAlias = (e) => {
-		if (e.keyCode === 13)
-			this.handleInputConfirmAlias(this.currentVal)
 	}
 
 	render() {
@@ -174,17 +166,13 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 						})}
 					{inputVisible && (
 						<Form.Item
-							wrapperCol={{ span: 10, offset: 0 }}
+							wrapperCol={{ span: 10 }}
 						>
-							<AutoComplete
+							<Input
 								ref={input => this.input = input}
-								dataSource={this.state.DS}
-								onSearch={ this.search }
-								onChange={ val => this.currentVal = val }
-							>
-							<Input onKeyDown={this.onKeyEnterAlias} />
-							</AutoComplete>
-							<Button style={{marginTop: '10px'}} type='primary' onClick={() => this.handleInputConfirmAlias(this.currentVal)}
+								onChange={ e => this.setState({currentVal: e.target.value})}
+							/>
+							<Button style={{marginTop: '10px'}} type='primary' onClick={() => this.handleInputConfirmAlias(this.state.currentVal)}
 								className='login-form-button'>
 								{i18next.t('ADD')}
 							</Button>
@@ -195,7 +183,7 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 							onClick={this.showInput}
 							style={{ background: '#fff', borderStyle: 'dashed' }}
 						>
-							<Icon type="plus" />{i18next.t('ADD')}
+							<PlusOutlined /> {i18next.t('ADD')}
 						</Tag>
 					)}
 				</div>
@@ -216,17 +204,18 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 						})}
 					{inputVisible && (
 						<Form.Item
-							wrapperCol={{ span: 10, offset: 0 }}
+							wrapperCol={{ span: 10 }}
 						>
 							<AutoComplete
 								ref={input => this.input = input}
-								dataSource={this.state.DS}
 								onSearch={ this.search }
-								onChange={ val => this.currentVal = val }
-							>
-							<Input onKeyDown={this.onKeyEnter} />
-							</AutoComplete>
-							<Button type='primary' onClick={() => this.handleInputConfirm(this.currentVal)}
+								onChange={ val => this.setState({currentVal: val}) }
+								options={this.state.DS.map(tag => {return {value:tag.value, label:tag.text}})}
+								value={this.state.DS.filter(tag => tag.value === this.state.currentVal).length > 0 &&
+									this.state.DS.filter(tag => tag.value === this.state.currentVal)[0].value ? this.state.DS.filter(tag => tag.value === this.state.currentVal)[0].text
+								: this.state.currentVal}
+							/>
+							<Button type='primary' onClick={() => this.handleInputConfirm(this.state.currentVal)}
 								className='login-form-button'>
 						{i18next.t('ADD')}
 							</Button>
@@ -237,7 +226,7 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 							onClick={this.showInput}
 							style={{ background: '#fff', borderStyle: 'dashed' }}
 						>
-							<Icon type="plus" /> {i18next.t('ADD')}
+							<PlusOutlined /> {i18next.t('ADD')}
 						</Tag>
 					)}
 				</div>
