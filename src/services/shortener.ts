@@ -2,21 +2,40 @@ import {cleanupInstances, upsertInstance, selectInstance} from '../dao/shortener
 import logger from 'winston';
 import {getConfig} from '../lib/utils/config';
 import { InstanceData } from '../types/shortener';
+import {isIPv6} from 'net';
 
 export async function publishInstance(ip: string, data: InstanceData) {
 	try {
-
+		// Find cheaters; people who will publish for others IPs
+		if (ip !== data?.IP6 && ip !== data?.IP4) {
+			logger.debug(`[Shortener] ${ip} is pretending to be ${JSON.stringify([data?.IP4, data?.IP6])} with ${JSON.stringify(data)}!`);
+			return false;
+		}
 		const currentDate = new Date();
 		logger.debug(`[Shortener] Received publish request from ${ip} with ${JSON.stringify(data)}`);
 		const instance = await selectInstance(ip);
 		logger.debug(`[Shortener] Instance found : ${JSON.stringify(instance)}`);
-		await upsertInstance({
-			instance_id: data.IID,
-			remote_ip: ip,
-			date: currentDate,
-			local_ip: data.localIP,
-			local_port: data.localPort
-		});
+		if (isIPv6(ip)) {
+			await upsertInstance({
+				instance_id: data.IID,
+				remote_ip4: data?.IP4, // Imaginons que qqun soit assez fou pour vivre avec que la V6 en 2020
+				date: currentDate,
+				local_ip4: data?.localIP4,
+				local_port: data.localPort,
+				ip6_prefix: data.IP6Prefix,
+				ip6: ip
+			});
+		} else {
+			await upsertInstance({
+				instance_id: data.IID,
+				remote_ip4: ip,
+				date: currentDate,
+				local_ip4: data.localIP4,
+				local_port: data.localPort,
+				ip6_prefix: data?.IP6Prefix,
+				ip6: data?.IP6
+			});
+		}
 	} catch(err) {
 		logger.error(`[Shortener] Failed to publish instance : ${err}`);
 		throw err;
@@ -33,7 +52,7 @@ export async function getInstance(ip: string) {
 
 export async function initShortener() {
 	setInterval(cleanInstances, 60 * 60 * 1000 * 24 * getConfig().Shortener.ExpireTimeDays);
-	cleanInstances();
+	await cleanInstances();
 }
 
 async function cleanInstances() {

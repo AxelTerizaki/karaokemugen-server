@@ -9,13 +9,34 @@ export async function selectInstance(ip: string): Promise<DBInstance[]> {
 }
 
 export async function upsertInstance(data: ShortURLData) {
-	return await db().query(sql.upsertInstance, [
-		data.date,
-		data.remote_ip,
-		data.local_ip,
-		data.local_port,
-		data.instance_id
-	]);
+	// determine if it's a dualstack request or ip4/6
+	if (data.ip6 && data.local_ip4) { // Dual-stack
+		return await db().query(sql.upsertInstance.dual, [
+			data.date,
+			data.ip6_prefix,
+			data.ip6,
+			data.remote_ip4,
+			data.local_ip4,
+			data.local_port,
+			data.instance_id
+		]);
+	} else if (data.ip6) { // IP6-only (so brave from him)
+		return await db().query(sql.upsertInstance.ip6, [
+			data.date,
+			data.ip6_prefix,
+			data.ip6,
+			data.local_port,
+			data.instance_id
+		]);
+	} else { // IP4-only
+		return await db().query(sql.upsertInstance.ip4, [
+			data.date,
+			data.remote_ip4,
+			data.local_ip4,
+			data.local_port,
+			data.instance_id
+		]);
+	}
 }
 
 export async function cleanupInstances(date: Date) {

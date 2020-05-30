@@ -1,6 +1,7 @@
 import {publishInstance, getInstance} from '../services/shortener';
 import { Router } from 'express';
 import { Locales } from 'locale';
+import { isIPv6 } from 'net';
 
 export default function ShortenerController(router: Router) {
 	router.route('/shortener')
@@ -8,7 +9,11 @@ export default function ShortenerController(router: Router) {
 			try {
 				const ret = await getInstance(req.headers['x-forwarded-for'] as string);
 				if (ret) {
-					res.redirect(`http://${ret.local_ip}:${ret.local_port}`);
+					if (isIPv6(req.headers['x-forwarded-for'] as string) && ret.ip6) {
+						res.redirect(`http://[${ret.ip6}]:${ret.local_port}`);
+					} else {
+						res.redirect(`http://${ret.local_ip4}:${ret.local_port}`);
+					}
 				} else {
 					const locale = new Locales(req.headers['accept-language'], 'en');
 					const supported_languages = new Locales(['fr', 'en']);
