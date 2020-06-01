@@ -11,6 +11,7 @@ export interface ShortURLData {
 export interface InstanceData {
 	IID: string,
 	localIP4?: string,
+	localIP?: string,
 	localPort: number,
 	IP6Prefix?: string,
 	IP6?: string,
