@@ -6,6 +6,7 @@ import { findTagInImportedFiles } from '../dao/tagfile';
 import { IDQueryResult } from '../lib/types/kara';
 import { v4 as uuidV4 } from 'uuid';
 import { DBTag } from '../lib/types/database/tag';
+import { writeSeriesFile } from '../lib/dao/seriesfile';
 
 export function formatTagList(tagList: DBTag[], from: number, count: number): TagList {
 	return {
@@ -42,6 +43,9 @@ export async function editTag(_tid: string, tag: Tag, _opts: any) {
 export async function addTag(tag: Tag, _opts: any) {
 	tag.tid = uuidV4();
 	await writeTagFile(tag, resolvedPathImport());
+	if (tag.types.includes(1)) {
+		await writeSeriesFile(tag, resolvedPathImport());
+	}
 	return tag;
 }
 
@@ -53,5 +57,8 @@ export async function getOrAddTagID(tagObj: Tag): Promise<IDQueryResult> {
 	if (tag) return {id: tag.tid, new: false};
 	tagObj.tid = uuidV4();
 	await writeTagFile(tagObj, resolvedPathImport());
+	if (tag.types.includes(1)) {
+		await writeSeriesFile(tag, resolvedPathImport());
+	}
 	return {id: tagObj.tid, new: true};
 }
