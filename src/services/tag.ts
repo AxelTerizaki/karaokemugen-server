@@ -57,8 +57,8 @@ export async function getOrAddTagID(tagObj: Tag): Promise<IDQueryResult> {
 	if (tag) return {id: tag.tid, new: false};
 	tagObj.tid = uuidV4();
 	await writeTagFile(tagObj, resolvedPathImport());
-	if (tag.types.includes(1)) {
-		await writeSeriesFile(tag, resolvedPathImport());
+	if (tagObj.types.includes(1)) {
+		await writeSeriesFile(tagObj, resolvedPathImport());
 	}
 	return {id: tagObj.tid, new: true};
 }
