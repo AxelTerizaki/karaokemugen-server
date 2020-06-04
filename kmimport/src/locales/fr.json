@@ -27,7 +27,7 @@
 		"TITLE_REQUIRED": "Le titre est obligatoire",
 		"SERIES": "Série(s)",
 		"SERIES_TOOLTIP": "Si le type est Music Video ou Concert, la série n'est pas obligatoire, sauf si en lien avec une série animée (Love Live, Idolmaster, etc.)",
-		"TYPE": "Type de chanson",
+		"SONGTYPES": "Type(s) de chanson",
 		"TYPE_REQUIRED": "Le type de chanson est obligatoire",
 		"ORDER": "Numéro de chanson",
 		"ORDER_TOOLTIP": "Numéro de l'opening/ending/etc. Si c'est le seul opening/ending dans la série, laissez vide.",

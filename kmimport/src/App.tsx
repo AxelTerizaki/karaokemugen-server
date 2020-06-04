@@ -1,5 +1,5 @@
 import React, { Suspense, Component } from 'react';
-import {Layout, Menu, Alert} from 'antd';
+import {Menu, Alert} from 'antd';
 import i18next from 'i18next';
 import './App.css';
 import KaraEdit from './pages/KaraEdit';
@@ -22,17 +22,16 @@ class MyApp extends Component {
 	render() {
 		return (
 			<div className="import-kara">
-				<Layout.Header style={{height: '48px'}}>
-					<Menu
-						theme="dark"
-						mode="horizontal"
-					>
-						<Menu.Item><a href="/base">{i18next.t('HOME')}</a></Menu.Item>
-						<Menu.Item className='lang-label' disabled>{<label>{i18next.t('LANG')}</label>}</Menu.Item>
-						<Menu.Item key="lng-en" onClick={() => i18next.changeLanguage('en', () => this.forceUpdate())}>EN</Menu.Item>
-						<Menu.Item key="lng-fr" onClick={() => i18next.changeLanguage('fr', () => this.forceUpdate())}>FR</Menu.Item>
-					</Menu>
-				</Layout.Header>
+				<Menu
+					theme="dark"
+					mode="horizontal"
+					style={{height: '48px'}}
+				>
+					<Menu.Item><a href="/base">{i18next.t('HOME')}</a></Menu.Item>
+					<Menu.Item className='lang-label' disabled>{<label>{i18next.t('LANG')}</label>}</Menu.Item>
+					<Menu.Item key="lng-en" onClick={() => i18next.changeLanguage('en', () => this.forceUpdate())}>EN</Menu.Item>
+					<Menu.Item key="lng-fr" onClick={() => i18next.changeLanguage('fr', () => this.forceUpdate())}>FR</Menu.Item>
+				</Menu>
 				<div className="description"><label>{i18next.t('DESCRIPTION')}</label></div>
 				<div className="description"><label><b>{i18next.t('ATTENTION')}</b> {i18next.t('CHECK_IN_PROGRESS')}</label></div>
 				<div className="description">
