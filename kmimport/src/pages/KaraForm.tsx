@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Input, InputNumber, message, Select, Tooltip, Upload,Form } from "antd";
+import { Button, Input, InputNumber, message, Tooltip, Upload,Form } from "antd";
 import EditableTagGroup from "./Components/EditableTagGroup";
 import { getTagInLocale, getApiUrl } from "../utils/kara";
 import i18next from 'i18next';
