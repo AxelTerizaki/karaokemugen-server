@@ -34,7 +34,7 @@ export default Vue.extend({
     };
   },
 
-  mounted: async () => {
+  async mounted () {
     console.log(this.checkboxes);
     console.log(this.tagType);
     if (this.checkboxes) {
