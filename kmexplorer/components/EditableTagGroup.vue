@@ -1,7 +1,6 @@
 <template>
-  <div v-if="this.checkboxes">
-    <div v-for="tag in this.DS" :key="tag.tid">
-      <Checkbox v-bind="this.DS.contains(tag.tid)">{{tag.name}}</Checkbox>
+  <div v-if="checkboxes">
+    <div v-for="tag in DS" :key="tag.tid">
       <label class="checkbox">
         <input type="checkbox" value="tag.value" />
         {{tag.text}}
@@ -12,12 +11,19 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Kara } from "../../src/lib/types/kara";
 
 export default Vue.extend({
   name: "EditableTagGroup",
 
-  props: ["checkboxes", "tagType"],
+  props: {
+    checkboxes: {
+      type: Boolean
+    },
+    tagType: {
+      type: Number,
+      required: true
+    }
+  },
 
   data() {
     return {
@@ -29,34 +35,31 @@ export default Vue.extend({
   },
 
   mounted: async () => {
-      console.log(this.checkboxes)
-      if (this.checkboxes) {
-        this.DS = await this.getTags(this.tagType);
-        console.log(this.DS)
-      }
+    console.log(this.checkboxes);
+    console.log(this.tagType);
+    if (this.checkboxes) {
+      this.DS = await this.getTags(this.tagType);
+      console.log(this.DS);
+    }
   },
 
   components: {},
 
   methods: {
-    async getTags (type, filter) {
-		if (filter === '') {
-			return ({data: []});
-		}
-		return this.$axios.$get(`/api/karas/tags/${type}`, {
-			params: {
-				type: type,
-				filter: filter
-			}
-		});
-	}
+    async getTags(type, filter) {
+      if (filter === "") {
+        return { data: [] };
+      }
+      return this.$axios.$get(`/api/karas/tags/${type}`, {
+        params: {
+          type: type,
+          filter: filter
+        }
+      });
+    }
   },
 
-  computed: {
-    karaoke(): Kara {
-      return this.karaparam ? this.karaparam : {};
-    }
-  }
+  computed: {}
 });
 </script>
 

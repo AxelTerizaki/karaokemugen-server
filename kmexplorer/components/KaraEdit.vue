@@ -38,7 +38,7 @@
     </div>
 	<div class="field">
       <label class="label">Name</label>
-      <editable-tag-group checkboxes :tagType="3"></editable-tag-group>
+      <editable-tag-group v-bind:checkboxes="true" :tagType="3"></editable-tag-group>
     </div>
   </form>
 </template>

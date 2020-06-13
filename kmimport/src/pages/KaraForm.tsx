@@ -309,7 +309,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 				>
 						<EditableTagGroup
 							tagType={1}
-							search={"tag"}
 							onChange={tags => {
 							this.formRef.current.setFieldsValue({ series: tags });
 								this.onChangeSingersSeries(tags, "singers");
@@ -330,7 +329,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={3}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ songtypes: tags })}
 					/>
 				</Form.Item>
@@ -364,7 +362,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 				>
 					<EditableTagGroup
 						tagType={5}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ langs: tags })}
 					/>
 				</Form.Item>
@@ -398,7 +395,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 				>
 					<EditableTagGroup
 						tagType={2}
-						search={'tag'}
 						onChange={(tags) => {
 							this.formRef.current.setFieldsValue({ singer: tags });
 							this.onChangeSingersSeries(tags, "series");
@@ -420,7 +416,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 				>
 					<EditableTagGroup
 						tagType={8}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ songwriters: tags })}
 					/>
 				</Form.Item>
@@ -438,7 +433,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 				>
 					<EditableTagGroup
 						tagType={4}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ creators: tags })}
 					/>
 				</Form.Item>
@@ -460,7 +454,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 				>
 					<EditableTagGroup
 						tagType={6}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ author: tags })}
 					/>
 				</Form.Item>
@@ -473,7 +466,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={10}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ families: tags })}
 					/>
 				</Form.Item>
@@ -486,7 +478,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={13}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ platforms: tags })}
 					/>
 				</Form.Item>
@@ -499,7 +490,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={12}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ genres: tags })}
 					/>
 				</Form.Item>
@@ -512,7 +502,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={11}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ origins: tags })}
 					/>
 				</Form.Item>
@@ -525,7 +514,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={7}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ misc: tags })}
 					/>
 				</Form.Item>
@@ -544,7 +532,6 @@ class KaraForm extends Component<KaraFormProps, KaraFormState> {
 					<EditableTagGroup
 						tagType={9}
 						checkboxes={true}
-						search={'tag'}
 						onChange={(tags) => this.formRef.current.setFieldsValue({ groups: tags })}
 					/>
 				</Form.Item>
