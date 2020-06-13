@@ -13,7 +13,7 @@
 
 <script lang="ts">
     import Vue from 'vue';
-    import KaraEdit from "../components/KaraEdit.vue";
+    import KaraEdit from "../../components/KaraEdit.vue";
 
     export default Vue.extend({
         name: "ImportKara",
@@ -29,12 +29,12 @@
         },
 
         async asyncData({ params, $axios, error, app }) {
-			let data;
+			let result;
 			if (params.id) {
-				data = await $axios.get(`/api/karas/${params.id}`).catch(
+				result = await $axios.get(`/api/karas/${params.id}`).catch(
 					_err => error({ statusCode: 404, message: app.i18n.t('kara.notfound') }));
 			}
-            return { karaparam: data };
+            return { karaparam: result.data };
         }
     });
 </script>

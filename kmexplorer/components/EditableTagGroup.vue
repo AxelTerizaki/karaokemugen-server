@@ -1,14 +1,23 @@
 <template>
-  <div v-if="checkboxes" class="tags">
-    <label class="checkbox" v-for="tag in datasource" :key="tag.tid">
-      <input type="checkbox" value="tag.value" />
-      {{localizedName(tag)}}
-    </label>
+  <div>
+    <div v-if="checkboxes" class="tags">
+      <label class="checkbox" v-for="tag in datasource" :key="tag.tid">
+        <input type="checkbox" value="tag.value" :checked="value.includes(tag.tid)" />
+        {{localizedName(tag)}}
+      </label>
+    </div>
+    <div v-if="!checkboxes" class="tags">
+      <span class="tag" v-for="tag in value" :key="tag.tid">
+        {{localizedName(tag)}}
+        <button class="delete is-small"></button>
+      </span>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import { DBTag } from "../../src/lib/types/database/tag";
 
 export default Vue.extend({
   name: "EditableTagGroup",
@@ -20,13 +29,18 @@ export default Vue.extend({
     tagType: {
       type: Number,
       required: true
+    },
+    params: {
+      type: Array
     }
   },
 
   data() {
     return {
       datasource: [],
-      value: [],
+      value: this.checkboxes
+        ? this.params.map((tag: DBTag) => tag.tid)
+        : this.params,
       inputVisible: false,
       currentVal: ""
     };
@@ -36,7 +50,6 @@ export default Vue.extend({
     if (this.checkboxes) {
       const result = await this.getTags(this.tagType);
       this.datasource = result.content;
-      console.log(result.content);
     }
   },
 

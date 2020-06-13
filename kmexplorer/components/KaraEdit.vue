@@ -36,9 +36,13 @@
         <input class="input" type="text" placeholder="Text input" v-model="karaoke.title" />
       </div>
     </div>
+	 <div class="field">
+      <label class="label">Name</label>
+      <editable-tag-group :tagType="1" :params="karaoke.series"></editable-tag-group>
+    </div>
     <div class="field">
       <label class="label">Name</label>
-      <editable-tag-group v-bind:checkboxes="true" :tagType="3"></editable-tag-group>
+      <editable-tag-group v-bind:checkboxes="true" :tagType="3" :params="karaoke.songtypes"></editable-tag-group>
     </div>
   </form>
 </template>
