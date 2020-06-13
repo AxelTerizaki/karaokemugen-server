@@ -17,7 +17,7 @@ function generateConfig(production: boolean = false) {
         axios: {
             baseURL: `http${conf.API.Secure?'s':''}://${conf.API.Host}${
                 (production || conf.API.Port === 443 || conf.API.Port === 80)?'':`:${conf.API.Port}`}/`,
-            https: conf.KaraExplorer.Secure
+            https: conf.API.Secure
         },
         i18n: {
             baseUrl: `http${conf.KaraExplorer.Secure?'s':''}://${conf.KaraExplorer.Host}${

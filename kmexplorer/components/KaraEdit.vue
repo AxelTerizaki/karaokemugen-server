@@ -38,7 +38,7 @@
     </div>
 	<div class="field">
       <label class="label">Name</label>
-      <editable-tag-group :checkboxes="true"></editable-tag-group>
+      <editable-tag-group checkboxes :tagType="3"></editable-tag-group>
     </div>
   </form>
 </template>
@@ -64,9 +64,6 @@ export default Vue.extend({
   components: {EditableTagGroup},
 
   methods: {
-    switchImage() {
-      this.karaoke.title;
-    }
   },
 
   computed: {

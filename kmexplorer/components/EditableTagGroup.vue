@@ -1,7 +1,7 @@
 <template>
   <div v-if="this.checkboxes">
     <div v-for="tag in this.DS" :key="tag.tid">
-      <Checkbox value="{tag.value}">{{tag.name}}</Checkbox>
+      <Checkbox v-bind="this.DS.contains(tag.tid)">{{tag.name}}</Checkbox>
       <label class="checkbox">
         <input type="checkbox" value="tag.value" />
         {{tag.text}}
@@ -12,15 +12,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { tagTypes } from "../assets/constants";
 import { Kara } from "../../src/lib/types/kara";
-
-let timer: any[] = [];
 
 export default Vue.extend({
   name: "EditableTagGroup",
 
-  props: ["i18n", "checkboxes", "tagType"],
+  props: ["checkboxes", "tagType"],
 
   data() {
     return {
@@ -31,12 +28,28 @@ export default Vue.extend({
     };
   },
 
+  mounted: async () => {
+      console.log(this.checkboxes)
+      if (this.checkboxes) {
+        this.DS = await this.getTags(this.tagType);
+        console.log(this.DS)
+      }
+  },
+
   components: {},
 
   methods: {
-    switchImage() {
-      this.karaoke.title;
-    }
+    async getTags (type, filter) {
+		if (filter === '') {
+			return ({data: []});
+		}
+		return this.$axios.$get(`/api/karas/tags/${type}`, {
+			params: {
+				type: type,
+				filter: filter
+			}
+		});
+	}
   },
 
   computed: {
