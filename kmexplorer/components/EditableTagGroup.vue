@@ -12,7 +12,9 @@
           {{localizedName(tag)}}
           <button class="delete is-small" @click="() => deleteValue(tag)"></button>
         </span>
+		<div class="button tag is-small" @click="inputVisible=true">Add</div>
       </div>
+	  <div v-if="inputVisible">
       <b-autocomplete
         keep-first
         placeholder="e.g. Orange"
@@ -29,6 +31,7 @@
             </a> 
         </template>
       </b-autocomplete>
+	  </div>
     </div>
   </div>
 </template>
@@ -110,6 +113,7 @@ export default Vue.extend({
       });
     },
     addValue(option) {
+		this.inputVisible = false;
         if (option) {
             let values:DBTag[] = this.values;
             values.push(option);
