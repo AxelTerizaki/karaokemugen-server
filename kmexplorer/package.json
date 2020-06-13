@@ -17,6 +17,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.merge": "^4.6.2",
     "nuxt": "^2.12.2",
+    "nuxt-buefy": "^0.3.31",
     "nuxt-fontawesome": "^0.4.0",
     "nuxt-i18n": "^6.12.2",
     "vuex-persist": "^2.2.0"
