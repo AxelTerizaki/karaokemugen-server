@@ -289,7 +289,7 @@ export let NuxtConfig = {
 		'@nuxtjs/axios',
 		// Doc: https://nuxt-community.github.io/nuxt-i18n
 		'nuxt-i18n',
-		['nuxt-buefy', { css: false, materialDesignIcons: false }]
+		['nuxt-buefy', { materialDesignIcons: false }]
 	],
 
 	plugins: [

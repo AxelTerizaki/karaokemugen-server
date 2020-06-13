@@ -38,11 +38,13 @@
     </div>
 	 <div class="field">
       <label class="label">Name</label>
-      <editable-tag-group :tagType="1" :params="karaoke.series"></editable-tag-group>
+      <editable-tag-group :tagType="1" :params="karaoke.series"
+	  	v-on:change="(tags) => karaoke.series = tags"></editable-tag-group>
     </div>
     <div class="field">
       <label class="label">Name</label>
-      <editable-tag-group v-bind:checkboxes="true" :tagType="3" :params="karaoke.songtypes"></editable-tag-group>
+      <editable-tag-group v-bind:checkboxes="true" :tagType="3" :params="karaoke.songtypes" 
+	  	v-on:change="(tags) => karaoke.songtypes = tags"></editable-tag-group>
     </div>
   </form>
 </template>
