@@ -7,7 +7,7 @@
           <input class="file-input" type="file" name="resume" />
           <span class="file-cta">
             <span class="file-icon">
-              <i class="fas fa-upload"></i>
+				<font-awesome-icon icon="upload" :fixed-width="true" />
             </span>
             <span class="file-label">Choose a file…</span>
           </span>
@@ -22,7 +22,7 @@
           <input class="file-input" type="file" name="resume" />
           <span class="file-cta">
             <span class="file-icon">
-              <i class="fas fa-upload"></i>
+              <font-awesome-icon icon="upload" :fixed-width="true" />
             </span>
             <span class="file-label">Choose a file…</span>
           </span>
