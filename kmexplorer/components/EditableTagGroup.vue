@@ -1,11 +1,9 @@
 <template>
-  <div v-if="checkboxes">
-    <div v-for="tag in DS" :key="tag.tid">
-      <label class="checkbox">
-        <input type="checkbox" value="tag.value" />
-        {{tag.text}}
-      </label>
-    </div>
+  <div v-if="checkboxes" class="tags">
+    <label class="checkbox" v-for="tag in datasource" :key="tag.tid">
+      <input type="checkbox" value="tag.value" />
+      {{localizedName(tag)}}
+    </label>
   </div>
 </template>
 
@@ -27,19 +25,18 @@ export default Vue.extend({
 
   data() {
     return {
-      DS: [],
+      datasource: [],
       value: [],
       inputVisible: false,
       currentVal: ""
     };
   },
 
-  async mounted () {
-    console.log(this.checkboxes);
-    console.log(this.tagType);
+  async mounted() {
     if (this.checkboxes) {
-      this.DS = await this.getTags(this.tagType);
-      console.log(this.DS);
+      const result = await this.getTags(this.tagType);
+      this.datasource = result.content;
+      console.log(result.content);
     }
   },
 
@@ -56,6 +53,13 @@ export default Vue.extend({
           filter: filter
         }
       });
+    },
+    localizedName(tag) {
+      if (tag.i18n) {
+        return tag.i18n[this.$i18n.locale] || tag.i18n.eng || tag.name;
+      } else {
+        return tag.name;
+      }
     }
   },
 
@@ -64,11 +68,7 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
-.tags {
-  margin-top: 0.5rem;
-  display: unset;
-  .tag *:first-child {
-    margin-right: 0.25rem;
-  }
+.checkbox {
+  width: 250px;
 }
 </style>

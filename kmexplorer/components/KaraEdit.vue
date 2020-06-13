@@ -36,7 +36,7 @@
         <input class="input" type="text" placeholder="Text input" v-model="karaoke.title" />
       </div>
     </div>
-	<div class="field">
+    <div class="field">
       <label class="label">Name</label>
       <editable-tag-group v-bind:checkboxes="true" :tagType="3"></editable-tag-group>
     </div>
@@ -61,10 +61,9 @@ export default Vue.extend({
     };
   },
 
-  components: {EditableTagGroup},
+  components: { EditableTagGroup },
 
-  methods: {
-  },
+  methods: {},
 
   computed: {
     karaoke(): Kara {

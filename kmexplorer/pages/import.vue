@@ -5,7 +5,7 @@
 			<i18n path="kara.import.attention" class="attention"></i18n>
 			<i18n path="kara.import.check_in_progress"></i18n>
 		</div>
-		<div class="tile is-child is-4">
+		<div class="tile is-child is-5">
 			<kara-edit :karaparam="karaparam"></kara-edit>
 		</div>
     </div>
