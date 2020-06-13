@@ -1,11 +1,10 @@
 import React from 'react';
-import { AutoComplete, Button, Checkbox, Col, Row, Tag, Form, Input } from 'antd';
+import { AutoComplete, Button, Checkbox, Col, Row, Tag, Form } from 'antd';
 import { getTagInLocale, getApiUrl } from "../../utils/kara";
 import i18next from 'i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 interface EditableTagGroupProps {
-	search: 'tag' | 'aliases',
 	onChange: any,
 	checkboxes?: boolean,
 	tagType?: number,
@@ -23,8 +22,6 @@ let timer:any[] = [];
 
 export default class EditableTagGroup extends React.Component<EditableTagGroupProps, EditableTagGroupState> {
 
-	input: any;
-
 	constructor(props) {
 		super(props);
 		if (this.props.checkboxes) this.search();
@@ -38,26 +35,7 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 	};
 
 	showInput = () => {
-		this.setState({ inputVisible: true }, () => this.input.focus());
-	};
-
-	
-	handleInputConfirmAlias = (val) => {
-		let tags = this.state.value;
-		if (val && tags.indexOf(val) === -1) {
-			tags = [...tags, val];
-		}
-		this.setState({
-			value: tags,
-			inputVisible: false
-		});
-		this.props.onChange && this.props.onChange(tags);
-	};
-
-	handleCloseAlias = (removedTag) => {
-		const tags = this.state.value.filter(tag => tag !== removedTag);
-		this.setState({ value: tags });
-		this.props.onChange && this.props.onChange(tags);
+		this.setState({ inputVisible: true });
 	};
 
 	handleClose = (removedTag) => {
@@ -97,10 +75,6 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 	};
 
 	search = (val?: any) => {
-		if (this.props.search === 'tag') this.searchTags(val);
-	};
-
-	searchTags = (val?: any) => {
 		if (timer[this.props.tagType]) clearTimeout(timer[this.props.tagType]);
 		timer[this.props.tagType] = setTimeout(() => {
 		this.getTags(val, this.props.tagType).then(tags => {
@@ -151,35 +125,6 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 					</Checkbox.Group>
 				</div>
 			);
-		} else if (this.props.search === 'aliases') {
-			return (
-				<div>
-					{value.map((tag) => <Tag style={{marginBottom: '8px'}} key={tag} closable={true} 
-						onClose={() => this.handleCloseAlias(tag)}>{tag}</Tag>)}
-					{inputVisible && (
-						<Form.Item
-							wrapperCol={{ span: 10 }}
-						>
-							<Input
-								ref={input => this.input = input}
-								onChange={ e => this.setState({currentVal: e.target.value})}
-							/>
-							<Button style={{marginTop: '10px'}} type='primary' onClick={() => this.handleInputConfirmAlias(this.state.currentVal)}
-								className='login-form-button'>
-								{i18next.t('ADD')}
-							</Button>
-						</Form.Item>
-					)}
-					{!inputVisible && (
-						<Tag
-							onClick={this.showInput}
-							style={{ background: '#fff', borderStyle: 'dashed' }}
-						>
-							<PlusOutlined /> {i18next.t('ADD')}
-						</Tag>
-					)}
-				</div>
-			);
 		} else {
 			return (
 				<div>
@@ -190,7 +135,6 @@ export default class EditableTagGroup extends React.Component<EditableTagGroupPr
 							wrapperCol={{ span: 10 }}
 						>
 							<AutoComplete
-								ref={input => this.input = input}
 								onSearch={ this.search }
 								onChange={ val => this.setState({currentVal: val}) }
 								options={this.state.DS.map(tag => {return {value:tag.value, label:tag.text}})}
