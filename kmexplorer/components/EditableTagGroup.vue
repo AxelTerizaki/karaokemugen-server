@@ -2,7 +2,7 @@
   <div>
     <div v-if="checkboxes" class="tags">
       <label class="checkbox" v-for="tag in data" :key="tag.tid">
-        <input type="checkbox" value="tag.value" :checked="values.includes(tag.tid)" />
+        <input type="checkbox" :value="tag.tid" v-model="values" @change="check" />
         {{localizedName(tag)}}
       </label>
     </div>
@@ -10,28 +10,28 @@
       <div class="tags">
         <span class="tag" v-for="tag in values" :key="tag.tid">
           {{localizedName(tag)}}
-          <button class="delete is-small" @click="() => deleteValue(tag)"></button>
+          <div class="delete is-small" @click="() => deleteValue(tag)"></div>
         </span>
-		<div class="button tag is-small" @click="inputVisible=true">Add</div>
+        <div class="button tag is-small" @click="inputVisible=true">{{$t('kara.import.add')}}</div>
       </div>
-	  <div v-if="inputVisible">
-      <b-autocomplete
-        keep-first
-        placeholder="e.g. Orange"
-        v-model="currentVal"
-        :data="data"
-        :loading="isFetching"
-        @typing="getAsyncData"
-        :custom-formatter="localizedName"
-        :clear-on-select="true"
-        @select="addValue">
-        <template slot="header">
+      <div v-if="inputVisible">
+        <b-autocomplete
+          keep-first
+          v-model="currentVal"
+          :data="data"
+          :loading="isFetching"
+          @typing="getAsyncData"
+          :custom-formatter="localizedName"
+          :clear-on-select="true"
+          @select="addValue"
+        >
+          <template slot="header">
             <a @click="newValue">
-                <span> Add new... </span>
-            </a> 
-        </template>
-      </b-autocomplete>
-	  </div>
+              <span>{{$t('kara.import.add')}}</span>
+            </a>
+          </template>
+        </b-autocomplete>
+      </div>
     </div>
   </div>
 </template>
@@ -113,18 +113,25 @@ export default Vue.extend({
       });
     },
     addValue(option) {
-		this.inputVisible = false;
-        if (option) {
-            let values:DBTag[] = this.values;
-            values.push(option);
-            this.$emit('change', values);
-        }
+      this.inputVisible = false;
+      if (option) {
+        let values: DBTag[] = this.values;
+        values.push(option);
+        this.$emit("change", values);
+      }
     },
     newValue() {
-        this.addValue({name: this.currentVal});
+      this.addValue({ name: this.currentVal });
     },
     deleteValue(option) {
-        this.$emit('change', this.values.filter(tag => tag[1] !== option[1]));
+      this.values = this.values.filter(tag => tag.name !== option.name);
+      this.$emit("change", this.values);
+    },
+    check() {
+      this.$emit(
+        "change",
+        this.data.filter(tag => this.values.includes(tag.tid))
+      );
     }
   },
 
