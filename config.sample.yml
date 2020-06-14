@@ -39,9 +39,7 @@ KaraExplorer:
   Path: /base
   LiveURL: https://live.karaokes.moe
   MediaLinks: true
-Import:
-  Host: localhost
-  Path: /import
+  Import: true
 Gitlab:
   Enabled: true
   Token: xxx

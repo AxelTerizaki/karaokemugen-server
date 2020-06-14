@@ -34,7 +34,6 @@ export function initFrontend(listenPort: number) {
 	const app = express();
 	const API = express();
 	const KMExplorer = express();
-	const KMImport = express();
 	const Shortener = express();
 	const KMServer = express();
 	const APILocater = express();
@@ -67,28 +66,17 @@ export function initFrontend(listenPort: number) {
 	APILocater.get('/whereIsMyAPI', (_, res) => {
 		res.status(200).json(conf.API);
 	});
-	// KMImport
-	if (conf.Import.Enabled) {
-		app.use(vhost(`${conf.Import.Host}`, APILocater));
-		app.use(vhost(`${conf.Import.Host}`, KMImport));
-		KMImport.use(conf.Import.Path, express.static(resolve(state.appPath, 'kmimport/build')));
-		KMImport.get(`${conf.Import.Path}/*`, (_, res) => {
-			res.sendFile(resolve(state.appPath, 'kmimport/build/index.html'));
-		});
-	}
 
 	//KMServer
 	// If static serve is enabled, we're serving all files from KMServer instead of Apache/nginx
 	if (state.opt.staticServe) {
-		app.use(vhost(`${conf.API.Host}`, KMImport));
+		app.use(vhost(`${conf.API.Host}`, API));
 		KMServer.use('/downloads/karaokes', express.static(resolvedPathRepos('Karas')[0]));
 		KMServer.use('/downloads/lyrics', express.static(resolvedPathRepos('Lyrics')[0]));
 		KMServer.use('/downloads/medias', express.static(resolvedPathRepos('Medias')[0]));
 		KMServer.use('/downloads/series', express.static(resolvedPathRepos('Series')[0]));
 		KMServer.use('/downloads/tags', express.static(resolvedPathRepos('Tags')[0]));
 	}
-
-
 
 	// API router
 	app.use(vhost(`${conf.API.Host}`, API));
@@ -145,7 +133,7 @@ function api() {
 	adminController(apiRouter);
 	// Adding KaraServ routes
 	KServerController(apiRouter);
-	if (conf.Import.Enabled) KImportController(apiRouter);
+	if (conf.KaraExplorer.Import) KImportController(apiRouter);
 	// Shortener/kara.moe route
 	if (conf.Shortener.Enabled) shortenerController(apiRouter);
 	// Stats

@@ -69,11 +69,6 @@ export const defaults: Config = {
 	Stats: {
 		Enabled: true
 	},
-	Import: {
-		Enabled: true,
-		Host: 'localhost',
-		Path: '/import'
-	},
 	API: {
 		Secure: true,
 		Host: 'localhost',
@@ -85,6 +80,7 @@ export const defaults: Config = {
 		Path: '/base/',
 		LiveURL: 'https://live.karaokes.moe',
 		MediaLinks: true,
+		Import: true,
 		Secure: true
 	},
 	Gitlab: {

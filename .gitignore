@@ -25,7 +25,6 @@ logs/
 !kmexplorer.old/src/app
 
 kmexplorer.old/\.next/
-kmimport/build
 
 kmexplorer/.nuxt
 

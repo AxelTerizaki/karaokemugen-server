@@ -1,8 +1,0 @@
-{
-	"ADD_SUCCESS": "Karaoké envoyé avec succès.",
-	"ADD_SUCCESS_DESCRIPTION": "Un ticket a été crée sur notre outil de suivi. Vous pouvez consulter l'avancement de l'intégration de votre karaoké : ",
-	"ADD_ERROR": "Une erreur a eu lieu, le karaoké n'a pas pu être envoyé",
-	"KARA": {
-		"ADD_FILE_SUCCESS": "Le fichier {{name}} a été ajouté avec succès"
-	}
-}

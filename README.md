@@ -80,9 +80,6 @@ KaraExplorer:
   Port: 1351
   Host: localhost
   Path: /base
-Import:
-  Host: localhost
-  Path: /import
 ```
 
 Explanations :
@@ -93,7 +90,6 @@ Explanations :
 - KaraExplorer.Host : Host KMExplorer should be listening to
 - KaraExplorer.Port : Port on which KMExplorer listens on. This is a separate port than Frontend.Port and should not be proxified at directly. KM Server will take care of routing stuff to and from KM Explorer
 - KaraExplorer.Path : Path to the karaoke base. Use `/base` if it's the same host as your API.Host value so the shortener and your KMExplorer won't overlap.
-- Import.Host and .Path : same as above, this is for the Karaoke Import submission form.
 
 ## Launch
 

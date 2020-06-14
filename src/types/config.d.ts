@@ -28,17 +28,13 @@ export interface Config {
 		Enabled: boolean
 		ExpireTimeDays: number
 	}
-	Import: {
-		Enabled: true
-		Host: string
-		Path: string
-	}
   	KaraExplorer: {
 		Enabled: boolean
 		Host: string
 		Path: string
 		LiveURL: string
 		MediaLinks: boolean
+		Import: true
 		Secure: boolean
 		NuxtOverrides?: any
 	}
