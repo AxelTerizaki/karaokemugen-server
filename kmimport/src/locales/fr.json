@@ -1,6 +1,4 @@
 {
-	"DOCUMENTATION_LINK": "Documentation",
-	"IN_PROGRESS_LINK": "Liste des karaokés en cours",
 	"ADD_SUCCESS": "Karaoké envoyé avec succès.",
 	"ADD_SUCCESS_DESCRIPTION": "Un ticket a été crée sur notre outil de suivi. Vous pouvez consulter l'avancement de l'intégration de votre karaoké : ",
 	"ADD_ERROR": "Une erreur a eu lieu, le karaoké n'a pas pu être envoyé",
@@ -8,8 +6,5 @@
 		"ADD_FILE_SUCCESS": "Le fichier {{name}} a été ajouté avec succès",
 		"ADD_FILE_MEDIA_ERROR": "{{name}} n'est pas un fichier vidéo",
 		"ADD_FILE_LYRICS_ERROR": "{{name}} n'est pas un fichier de sous-titres"
-	},
-	"LICENSE_REMINDER": "Votre karaoké sera publié avec la licence CC-NC-BY-SA 4.0.",
-	"LICENSE_LINK": "Renseignez-vous sur cette licence en cliquant ici.",
-	"LICENSE_INFO": "Ce karaoké pourra donc être distribué à des fins non commerciales par n'importe qui tant qu'il respecte les conditions de cette licence."
+	}
 }

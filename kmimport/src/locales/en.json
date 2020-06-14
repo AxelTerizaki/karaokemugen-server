@@ -1,6 +1,4 @@
 {
-	"DOCUMENTATION_LINK": "Documentation",
-	"IN_PROGRESS_LINK": "Karaokes In Progress List",
 	"ADD_SUCCESS": "Karaoke sent successfully.",
 	"ADD_SUCCESS_DESCRIPTION": "An issue has been created on our tracker. You can check its progression at: ",
 	"ADD_ERROR": "An error has occurred, karaoke has not been sent properly",
@@ -8,8 +6,5 @@
 		"ADD_FILE_SUCCESS": "{{name}} file added successfully",
 		"ADD_FILE_MEDIA_ERROR": "{{name}} is not a media file",
 		"ADD_FILE_LYRICS_ERROR": "{{name}} is not a subtitle file"
-	},
-	"LICENSE_REMINDER": "Your karaoke will be published with the CC-NC-BY-SA 4.0.",
-	"LICENSE_LINK": "Learn more about this license by clicking here.",
-	"LICENSE_INFO": "This karaoke may be distributed for non-commercial purposes, as soon as it complies with the license terms."
+	}
 }
