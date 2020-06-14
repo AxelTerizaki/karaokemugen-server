@@ -7,16 +7,24 @@
       </label>
       <div class="file has-name is-fullwidth">
         <label class="file-label">
-          <input class="file-input" type="file" name="resume" />
+          <input
+            class="file-input"
+            type="file"
+            name="resume"
+            ref="mediafile"
+            accept="video/*, audio/*, .mkv"
+            v-on:change="handleMediafileUpload()"
+          />
           <span class="file-cta">
             <span class="file-icon">
               <font-awesome-icon :icon="['fas', 'upload']" :fixed-width="true" />
             </span>
             <span class="file-label">{{$t('kara.import.choose_file')}}</span>
           </span>
-          <span class="file-name">{{karaoke.mediafile}}</span>
+          <span class="file-name">{{mediafile}}</span>
         </label>
       </div>
+      <p class="help is-danger" v-if="mediafile_error">{{mediafile_error}}</p>
     </div>
     <div class="field">
       <label class="label" :title="$t('kara.import.lyrics_file_tooltip')">
@@ -25,16 +33,23 @@
       </label>
       <div class="file has-name is-fullwidth">
         <label class="file-label">
-          <input class="file-input" type="file" name="resume" />
+          <input
+            class="file-input"
+            type="file"
+            name="resume"
+            ref="subfile"
+            v-on:change="handleSubfileUpload()"
+          />
           <span class="file-cta">
             <span class="file-icon">
               <font-awesome-icon :icon="['fas', 'upload']" :fixed-width="true" />
             </span>
             <span class="file-label">{{$t('kara.import.choose_file')}}</span>
           </span>
-          <span class="file-name">{{karaoke.subfile}}</span>
+          <span class="file-name">{{subfile}}</span>
         </label>
       </div>
+      <p class="help is-danger" v-if="subfile_error">{{subfile_error}}</p>
     </div>
     <div class="field">
       <label class="label" :title="$t('kara.import.title_tooltip')">
@@ -291,13 +306,70 @@ export default Vue.extend({
     return {
       tagTypes,
       activate: false,
-      karaoke: this.karaparam ? this.karaparam : {}
+      karaoke: this.karaparam ? this.karaparam : {},
+      mediafile: this.karaparam?.mediafile,
+      subfile: this.karaparam?.subfile,
+      mediafile_error: "",
+      subfile_error: ""
     };
   },
 
   components: { EditableTagGroup },
 
-  methods: {},
+  methods: {
+    async handleMediafileUpload() {
+	  let file = this.$refs.mediafile.files[0];
+	  this.mediafile_error = "";
+      if (!this.isMediaFile(file.name)) {
+        this.mediafile_error = this.$t("kara.import.add_file_media_error", {
+          name: file.name
+        });
+      } else {
+        this.mediafile = file.name;
+        let formData = new FormData();
+        formData.append("file", file);
+        let result = await this.$axios.$post(
+          `/api/karas/importfile`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          }
+        );
+		this.karaoke.mediafile = result.filename;
+		this.karaoke.mediafile_orig = result.originalname;
+      }
+    },
+    async handleSubfileUpload() {
+	  let file = this.$refs.subfile.files[0];
+	  this.mediafile_error = "";
+      if (!this.isMediaFile(file.name)) {
+        this.subfile_error = this.$t("kara.import.add_file_lyrics_error", {
+          name: file.name
+        });
+      } else {
+        this.subfile = file.name;
+        let formData = new FormData();
+        formData.append("file", file);
+        let result = this.$axios.$post(`/api/karas/importfile`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+		this.karaoke.subfile = result.filename;
+		this.karaoke.subfile_orig = result.originalname;
+      }
+    },
+    isMediaFile(filename) {
+      return new RegExp(
+        "^.+\\.(avi|mkv|mp4|webm|mov|wmv|mpg|ogg|m4a|mp3)$"
+      ).test(filename);
+    },
+    isSubFile(filename) {
+      return new RegExp("^.+\\.(ass|txt|kfn|kar)$").test(filename);
+    }
+  },
 
   computed: {}
 });

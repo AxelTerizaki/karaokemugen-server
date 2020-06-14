@@ -31,6 +31,8 @@ export default {
 			license_info: "This karaoke may be distributed for non-commercial purposes, as soon as it complies with the license terms.",
 			add: "Add",
 			choose_file: "Choose a file",
+			add_file_media_error: "{name} is not a media file",
+			add_file_lyrics_error: "{name} is not a subtitle file",
 			comment: "Leave a comment?",
 			comment_edit: "If you're submitting an edit, tell us who you are here!",
 			submit: "Send karaoke",

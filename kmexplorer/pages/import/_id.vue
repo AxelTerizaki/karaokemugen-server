@@ -53,14 +53,30 @@ export default Vue.extend({
 
   async asyncData({ params, $axios, error, app }) {
     let result;
+    let karaparam = {
+      series: [],
+      singers: [],
+      misc: [],
+      groups: [],
+      songwriters: [],
+      creators: [],
+      authors: [],
+      langs: [],
+      songtypes: [],
+      families: [],
+      genres: [],
+      platforms: [],
+      origins: []
+    };
     if (params.id) {
       result = await $axios
         .get(`/api/karas/${params.id}`)
         .catch(_err =>
           error({ statusCode: 404, message: app.i18n.t("kara.notfound") })
         );
+      karaparam = result.data;
     }
-    return { karaparam: result.data };
+    return { karaparam: karaparam };
   }
 });
 </script>

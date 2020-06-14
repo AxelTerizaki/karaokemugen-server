@@ -3,8 +3,6 @@
 	"ADD_SUCCESS_DESCRIPTION": "An issue has been created on our tracker. You can check its progression at: ",
 	"ADD_ERROR": "An error has occurred, karaoke has not been sent properly",
 	"KARA": {
-		"ADD_FILE_SUCCESS": "{{name}} file added successfully",
-		"ADD_FILE_MEDIA_ERROR": "{{name}} is not a media file",
-		"ADD_FILE_LYRICS_ERROR": "{{name}} is not a subtitle file"
+		"ADD_FILE_SUCCESS": "{{name}} file added successfully"
 	}
 }

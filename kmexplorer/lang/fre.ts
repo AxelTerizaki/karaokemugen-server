@@ -31,6 +31,8 @@ export default {
 			license_info: "Ce karaoké pourra donc être distribué à des fins non commerciales par n'importe qui tant qu'il respecte les conditions de cette licence.",
 			add: "Ajout",
 			choose_file: "Choisissez un fichier",
+			add_file_media_error: "{name} n'est pas un fichier vidéo",
+			add_file_lyrics_error: "{name} n'est pas un fichier de sous-titres",
 			comment_tooltip: "Si vous voulez donner des indications aux mainteneurs de la base de karaokés ou simplement dire merci, faites-le ici !",
 			comment: "Un commentaire ?",
 			comment_edit: "N'hésitez pas à signer votre correction pour qu'on sache qui vous êtes !",
