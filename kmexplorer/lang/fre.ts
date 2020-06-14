@@ -33,6 +33,7 @@ export default {
 			choose_file: "Choisissez un fichier",
 			add_file_media_error: "{name} n'est pas un fichier vidéo",
 			add_file_lyrics_error: "{name} n'est pas un fichier de sous-titres",
+			add_file_success: "Le fichier {name} a été ajouté avec succès",
 			comment_tooltip: "Si vous voulez donner des indications aux mainteneurs de la base de karaokés ou simplement dire merci, faites-le ici !",
 			comment: "Un commentaire ?",
 			comment_edit: "N'hésitez pas à signer votre correction pour qu'on sache qui vous êtes !",
@@ -59,7 +60,10 @@ export default {
 			authors_required: "L'auteur du karaoké est obligatoire",
 			groups_tooltip: "Groupes de téléchargement pour ce morceau. Le morceau sera ajouté dans ces paquets pour le téléchargement",
 			created_at: "Date de création",
-			modified_at: "Date de dernière mise à jour"
+			modified_at: "Date de dernière mise à jour",
+			add_success: "Karaoké envoyé avec succès.",
+			add_succes_description: "Un ticket a été crée sur notre outil de suivi. Vous pouvez consulter l'avancement de l'intégration de votre karaoké : ",
+			add_error: "Une erreur a eu lieu, le karaoké n'a pas pu être envoyé",
 		},
     },
     layout: {

@@ -33,6 +33,7 @@ export default {
 			choose_file: "Choose a file",
 			add_file_media_error: "{name} is not a media file",
 			add_file_lyrics_error: "{name} is not a subtitle file",
+			add_file_success: "{name} file added successfully",
 			comment: "Leave a comment?",
 			comment_edit: "If you're submitting an edit, tell us who you are here!",
 			submit: "Send karaoke",
@@ -58,7 +59,10 @@ export default {
 			authors_required: "Author of the kara is mandatory",
 			groups_tooltip: "Download groups for this song. The song will be included in these download packs",
 			created_at: "Creation date",
-			modified_at: "Last updated date"
+			modified_at: "Last updated date",
+			add_success: "Karaoke sent successfully.",
+			add_success_description: "An issue has been created on our tracker. You can check its progression at: ",
+			add_error: "An error has occurred, karaoke has not been sent properly",
 		},
     },
     layout: {
