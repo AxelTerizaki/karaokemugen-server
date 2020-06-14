@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <div>
     <div class="field">
       <label class="label" :title="$t('kara.import.media_file_tooltip')">
         {{$t('kara.import.media_file')}}
@@ -286,10 +286,14 @@
     </div>
     <div class="field">
       <div class="control submit">
-        <button class="button is-link">{{$t('kara.import.submit')}}</button>
+        <button
+          class="button is-link"
+          :disabled="submitDisabled()"
+          @click="submit"
+        >{{$t('kara.import.submit')}}</button>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script lang="ts">
@@ -318,8 +322,8 @@ export default Vue.extend({
 
   methods: {
     async handleMediafileUpload() {
-	  let file = this.$refs.mediafile.files[0];
-	  this.mediafile_error = "";
+      let file = this.$refs.mediafile.files[0];
+      this.mediafile_error = "";
       if (!this.isMediaFile(file.name)) {
         this.mediafile_error = this.$t("kara.import.add_file_media_error", {
           name: file.name
@@ -337,14 +341,14 @@ export default Vue.extend({
             }
           }
         );
-		this.karaoke.mediafile = result.filename;
-		this.karaoke.mediafile_orig = result.originalname;
+        this.karaoke.mediafile = result.filename;
+        this.karaoke.mediafile_orig = result.originalname;
       }
     },
     async handleSubfileUpload() {
-	  let file = this.$refs.subfile.files[0];
-	  this.mediafile_error = "";
-      if (!this.isMediaFile(file.name)) {
+      let file = this.$refs.subfile.files[0];
+      this.mediafile_error = "";
+      if (!this.isSubFile(file.name)) {
         this.subfile_error = this.$t("kara.import.add_file_lyrics_error", {
           name: file.name
         });
@@ -357,8 +361,8 @@ export default Vue.extend({
             "Content-Type": "multipart/form-data"
           }
         });
-		this.karaoke.subfile = result.filename;
-		this.karaoke.subfile_orig = result.originalname;
+        this.karaoke.subfile = result.filename;
+        this.karaoke.subfile_orig = result.originalname;
       }
     },
     isMediaFile(filename) {
@@ -368,6 +372,26 @@ export default Vue.extend({
     },
     isSubFile(filename) {
       return new RegExp("^.+\\.(ass|txt|kfn|kar)$").test(filename);
+    },
+    submit() {
+      if (this.karaoke.kid) {
+        this.$axios.$put(`/api/karas/${this.karaoke.kid}`, this.karaoke);
+      } else {
+        this.$axios.$post("/api/karas/", this.karaoke);
+      }
+    },
+    submitDisabled() {
+      return (
+        this.mediafile_error ||
+        this.subfile_error ||
+        !this.karaoke.title ||
+        (this.karaoke.series.length === 0 &&
+          this.karaoke.singers.length === 0) ||
+        this.karaoke.songtypes.length === 0 ||
+        this.karaoke.langs.length === 0 ||
+        !this.karaoke.year ||
+        this.karaoke.authors.length === 0
+      );
     }
   },
 
